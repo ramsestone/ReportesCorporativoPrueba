@@ -44,6 +44,12 @@
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Columna de Prueba' = 0
+		formatString: 0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition empresas = m
 		mode: import
 		source =

@@ -1,15 +1,15 @@
 {
-  "name": "1c79605847d9241d703d",
+  "name": "d1c05462c7055571beb0",
   "layouts": [
     {
       "id": 0,
       "position": {
-        "x": 1295.7499482957076,
-        "y": 96,
-        "z": 5002,
-        "width": 304,
-        "height": 64,
-        "tabOrder": 5002
+        "x": 911.74994829570744,
+        "y": 80,
+        "z": 6000,
+        "width": 368,
+        "height": 80,
+        "tabOrder": 6000
       }
     }
   ],
@@ -18,7 +18,7 @@
     "projections": {
       "Values": [
         {
-          "queryRef": "Calendario.Date",
+          "queryRef": "centro_costo.Nombre Desarrollo",
           "active": true
         }
       ]
@@ -28,7 +28,7 @@
       "From": [
         {
           "Name": "c",
-          "Entity": "Calendario",
+          "Entity": "centro_costo",
           "Type": 0
         }
       ],
@@ -40,45 +40,37 @@
                 "Source": "c"
               }
             },
-            "Property": "Date"
+            "Property": "Nombre Desarrollo"
           },
-          "Name": "Calendario.Date",
-          "NativeReferenceName": "Fecha"
+          "Name": "centro_costo.Nombre Desarrollo",
+          "NativeReferenceName": "Centro de Costo"
         }
       ]
     },
     "columnProperties": {
-      "Calendario.Date": {
-        "displayName": "Fecha"
+      "centro_costo.Nombre Desarrollo": {
+        "displayName": "Centro de Costo"
       }
     },
     "drillFilterOtherVisuals": true,
-    "hasDefaultSort": true,
     "objects": {
       "data": [
         {
           "properties": {
-            "endDate": {
-              "expr": {
-                "Literal": {
-                  "Value": "datetime'2025-09-30T00:00:00'"
-                }
-              }
-            },
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Between'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
           }
         }
       ],
-      "slider": [
+      "selection": [
         {
           "properties": {
-            "show": {
+            "strictSingleSelect": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -91,36 +83,48 @@
       "general": [
         {
           "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "filter": {
               "filter": {
                 "Version": 2,
                 "From": [
                   {
                     "Name": "c",
-                    "Entity": "Calendario",
+                    "Entity": "centro_costo",
                     "Type": 0
                   }
                 ],
                 "Where": [
                   {
                     "Condition": {
-                      "Comparison": {
-                        "ComparisonKind": 3,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "c"
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "c"
+                                }
+                              },
+                              "Property": "Nombre Desarrollo"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'112 ARMONIK RIO CONSULADO'"
                               }
-                            },
-                            "Property": "Date"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "datetime'2025-10-01T00:00:00'"
-                          }
-                        }
+                            }
+                          ]
+                        ]
                       }
                     }
                   }

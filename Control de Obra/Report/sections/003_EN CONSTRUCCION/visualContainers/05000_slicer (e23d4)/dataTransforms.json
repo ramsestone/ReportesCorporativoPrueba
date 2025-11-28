@@ -74,19 +74,6 @@
             "Property": "Nombre Desarrollo"
           }
         }
-      },
-      {
-        "type": 0,
-        "expression": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "pagado"
-              }
-            },
-            "Property": "Tipo de Pago"
-          }
-        }
       }
     ]
   },
