@@ -1,0 +1,581 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 1298.841451433731
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 274.8783812628559,
+            "y": 303.3610059984361
+          },
+          "nodeIndex": "centro_costo",
+          "nodeLineageTag": "de5a21bb-d892-4244-9faa-5d0408876b86",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 38
+        },
+        {
+          "location": {
+            "x": 1222.0624457036017,
+            "y": 333.25251442249612
+          },
+          "nodeIndex": "clientes",
+          "nodeLineageTag": "eedeb9aa-7e25-495a-9a87-dc9f5afa92fc",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 41
+        },
+        {
+          "location": {
+            "x": 606.42395767490723,
+            "y": 399.85294117647061
+          },
+          "nodeIndex": "desarrollos",
+          "nodeLineageTag": "f5dc065c-1eac-4089-9e56-885c5f7a8360",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 192.74318060674119,
+            "y": 0
+          },
+          "nodeIndex": "empresas",
+          "nodeLineageTag": "e4fca260-6e03-41c3-a4d7-8258be647f99",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 88.23050547298854,
+            "y": 697.5747483605038
+          },
+          "nodeIndex": "orden_compra",
+          "nodeLineageTag": "8595e4a1-21ae-4abe-abff-28023a90e984",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 42
+        },
+        {
+          "location": {
+            "x": 714.07942384183957,
+            "y": 37.5
+          },
+          "nodeIndex": "tipos_centro",
+          "nodeLineageTag": "53ea5490-0422-400c-9429-0af1c765a25e",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 1639.0630500805864,
+            "y": 789.78771261717566
+          },
+          "nodeIndex": "proveedores",
+          "nodeLineageTag": "b2db2b3b-e053-4933-b5d7-bd132387c71b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 28
+        },
+        {
+          "location": {
+            "x": 1330.5390869919402,
+            "y": 1189.7359111868873
+          },
+          "nodeIndex": "libre_abordo",
+          "nodeLineageTag": "3c509e3d-1e2a-4ae4-84ab-e1d43c2df124",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 1300.147511857808,
+            "y": 826.41182504332073
+          },
+          "nodeIndex": "insumos",
+          "nodeLineageTag": "e454e4ec-95ff-42fa-9fc5-22d38c90bfd2",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 1518.3296666347546,
+            "y": 421.56667354216148
+          },
+          "nodeIndex": "orden_compra_det",
+          "nodeLineageTag": "1b2c753c-444e-4e3d-8d93-1c2b96b718be",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 31
+        },
+        {
+          "location": {
+            "x": 2169.4468330635336,
+            "y": 476.87654640410892
+          },
+          "nodeIndex": "Forma de Pago",
+          "nodeLineageTag": "6dc1a00a-e748-4782-9c38-944ba04da3f7",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 980.65813524198131,
+            "y": 900.4584533310001
+          },
+          "nodeIndex": "almacen",
+          "nodeLineageTag": "c95a967a-286b-4a2d-a081-1633e2f876af",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 1299.9145454983918,
+            "y": 991.04103251652043
+          },
+          "nodeIndex": "embarque",
+          "nodeLineageTag": "f35a5ea5-df98-446e-9473-90ad8f24aafe",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 930.83701683853,
+            "y": 683.55558413156325
+          },
+          "nodeIndex": "almacen_cc",
+          "nodeLineageTag": "a7f1baaf-fb04-42d3-aff1-9bb46660282e",
+          "size": {
+            "height": 152,
+            "width": 298.70588235294122
+          },
+          "zIndex": 26
+        },
+        {
+          "location": {
+            "x": 605.81272276489437,
+            "y": 1307.8485790105583
+          },
+          "nodeIndex": "empleados_solicito",
+          "nodeLineageTag": "4c284dd8-8ba7-43cf-bfc6-dbb6c944898f",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 579.16680794183071,
+            "y": 799.91173043623883
+          },
+          "nodeIndex": "empleados_autorizo",
+          "nodeLineageTag": "26fe64fa-f8da-474a-803c-1d40b1802e11",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 1015.0702394616741,
+            "y": 1185.7639174648968
+          },
+          "nodeIndex": "empleados_reviso",
+          "nodeLineageTag": "8b6a634f-86f6-4aa5-8820-6fe3aae09fff",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 762.79989625077178,
+            "y": 1508.2058278986906
+          },
+          "nodeIndex": "puestos_solicito",
+          "nodeLineageTag": "99429714-7a65-41ad-a960-1f1f1dd7c4c3",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 578.342624394867,
+            "y": 1034.8981557756056
+          },
+          "nodeIndex": "puestos_autorizo",
+          "nodeLineageTag": "c3a4920b-563d-4461-af65-80955ee4a122",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 24
+        },
+        {
+          "location": {
+            "x": 1250.390871074849,
+            "y": 1402.1681406926493
+          },
+          "nodeIndex": "puestos_reviso",
+          "nodeLineageTag": "93651e4a-132a-43c7-8406-0ef1cd4b9dd3",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 2044.9523052458817,
+            "y": 1766.7817113622768
+          },
+          "nodeIndex": "frentes",
+          "nodeLineageTag": "9874a798-279c-4595-bf64-b7cd08fc9f4f",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 29
+        },
+        {
+          "location": {
+            "x": 1901.6905176566988,
+            "y": 476.5349499302427
+          },
+          "nodeIndex": "partidas",
+          "nodeLineageTag": "0f0ae5ec-2d27-47bb-88f8-c0a20ce323a1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 1623.7270398894041,
+            "y": 1033.2042957042959
+          },
+          "nodeIndex": "estimaciones_contratistas_tot",
+          "nodeLineageTag": "b896234e-2dc6-4a0d-8042-cbb6af31cc4a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 35
+        },
+        {
+          "location": {
+            "x": 1930.0207461831108,
+            "y": 1020.8333333333333
+          },
+          "nodeIndex": "estimacion_obra",
+          "nodeLineageTag": "7549af2c-37e4-4595-9279-005c87746b15",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 27
+        },
+        {
+          "location": {
+            "x": 1744.4981608567086,
+            "y": 1395.9550940549234
+          },
+          "nodeIndex": "contrato_contratista",
+          "nodeLineageTag": "e1809815-412c-48a4-9a33-a90df5bb1293",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 34
+        },
+        {
+          "location": {
+            "x": 2039.303355661903,
+            "y": 1396.5976768975918
+          },
+          "nodeIndex": "contrato_contratista_det",
+          "nodeLineageTag": "5d87877d-0284-488e-be74-d7493fd1cc54",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 1053.6492259036918,
+            "y": 1635.9646397402171
+          },
+          "nodeIndex": "movprov",
+          "nodeLineageTag": "86e2ee18-9c1f-42d4-abbe-4701f70eccb8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1495.0140879440332,
+            "y": 2095.6473491876322
+          },
+          "nodeIndex": "amortizacion",
+          "nodeLineageTag": "ae8c1b1b-7094-4388-abda-e1f24234a8f7",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1777.1959536857139,
+            "y": 1907.6733232136057
+          },
+          "nodeIndex": "amortizacion_contratista",
+          "nodeLineageTag": "d63cb3ea-bfbc-4143-8f7b-06481bb41701",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 1480.9361500128241,
+            "y": 1611.8291039563007
+          },
+          "nodeIndex": "amortizacion_contratista_det",
+          "nodeLineageTag": "c8882876-9ab0-4ed5-8fd6-82b8859bf51d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 33
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2283.0050471428358
+          },
+          "nodeIndex": "presupuesto_compras",
+          "nodeLineageTag": "20b8375d-d16b-40d4-b7c9-05003e1bcab2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 36
+        },
+        {
+          "location": {
+            "x": 1.9607843137254122,
+            "y": 1457.9070318625049
+          },
+          "nodeIndex": "pagado",
+          "nodeLineageTag": "5f205bd0-33f1-4241-9cf9-c747a222e34f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 774.12873993108394,
+            "y": 1739.8677922408751
+          },
+          "nodeIndex": "saldos_iniciales",
+          "nodeLineageTag": "35e3f8f5-122a-4e97-8107-e28ce4a5ebaa",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 284.71694081812814,
+            "y": 1209.7109294957768
+          },
+          "nodeIndex": "obras",
+          "nodeLineageTag": "5a9be863-8ad6-4467-9c18-85ca40dc252c",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 37
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1977.1226942016594
+          },
+          "nodeIndex": "presupuesto_actualizado",
+          "nodeLineageTag": "5af02e21-0205-4a08-b06f-dcd8f7f928c1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1762.4168118487185
+          },
+          "nodeIndex": "presupuesto_base",
+          "nodeLineageTag": "0a235ab3-ed05-45de-90c2-2966e8ed2f5f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 894.12774714861018,
+            "y": 435.74233616335454
+          },
+          "nodeIndex": "desarrollos EK10",
+          "nodeLineageTag": "fa3437d1-2e56-4613-b029-230f35e3d77b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 39
+        },
+        {
+          "location": {
+            "x": 1134.2562478324755,
+            "y": 70.7649198306218
+          },
+          "nodeIndex": "sabana",
+          "nodeLineageTag": "4d4ce01b-12eb-437d-b972-5c60a8e9fce9",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 40
+        },
+        {
+          "location": {
+            "x": 2328.9523052458817,
+            "y": 1149.2525235714179
+          },
+          "nodeIndex": "ubicacion_caracteristicas",
+          "nodeLineageTag": "874f4c49-657c-4eec-a8ed-e75f98ff9a78",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1702.1822675168057,
+            "y": 105.58974241934517
+          },
+          "nodeIndex": "ventas",
+          "nodeLineageTag": "55272374-82a5-49e3-b658-1e0c2ca15b26",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 2904.4687486978223,
+            "y": 1069.044543669617
+          },
+          "nodeIndex": "ventas_ubicaciones",
+          "nodeLineageTag": "8a4d6873-30d8-4bb2-a350-991c27578109",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2684.8670374177905,
+            "y": 774.339911988705
+          },
+          "nodeIndex": "Calendario",
+          "nodeLineageTag": "ffde8e58-8701-4008-9b11-8a47b037d334",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 497.96437869107638,
+            "y": 1526.7202504833824
+          },
+          "nodeIndex": "facturado",
+          "nodeLineageTag": "4cde2e92-a8ba-4290-abc4-f7deaaedb2bb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 43
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 53.216657925726615,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

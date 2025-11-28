@@ -1,0 +1,31 @@
+﻿table ventas_ubicaciones
+
+	column IdVenta
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IdVenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdUbicacion
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IdUbicacion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ventas_ubicaciones = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\ingresos_data.xlsx"), null, true),
+				    ventas_ubicaciones_Sheet = Origen{[Item="ventas_ubicaciones",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(ventas_ubicaciones_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IdVenta", Int64.Type}, {"IdUbicacion", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

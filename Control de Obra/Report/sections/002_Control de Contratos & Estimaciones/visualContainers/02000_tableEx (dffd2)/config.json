@@ -1,0 +1,434 @@
+{
+  "name": "dffd2f7f4cb241ecc835",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "height": 178.08673469387762,
+        "width": 811.3708697764821,
+        "x": 595.29579689018453,
+        "y": 0.15221088435382116,
+        "z": 6000,
+        "tabOrder": 2000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "tableEx",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "contrato_contratista_det.partida"
+        },
+        {
+          "queryRef": "contrato_contratista_det.Partida Des"
+        },
+        {
+          "queryRef": "contrato_contratista_det.Importe Contrato Subtotal"
+        },
+        {
+          "queryRef": "contrato_contratista.Importe Contrato Total"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "c",
+          "Entity": "contrato_contratista_det",
+          "Type": 0
+        },
+        {
+          "Name": "c1",
+          "Entity": "contrato_contratista",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "partida"
+          },
+          "Name": "contrato_contratista_det.partida",
+          "NativeReferenceName": "-1"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Partida Des"
+          },
+          "Name": "contrato_contratista_det.Partida Des",
+          "NativeReferenceName": "-"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c1"
+              }
+            },
+            "Property": "Importe Contrato Total"
+          },
+          "Name": "contrato_contratista.Importe Contrato Total",
+          "NativeReferenceName": "Importe Contrato"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Importe Contrato Subtotal"
+          },
+          "Name": "contrato_contratista_det.Importe Contrato Subtotal",
+          "NativeReferenceName": "Importe Contrato Subtotal"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 1,
+          "Expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "c"
+                }
+              },
+              "Property": "Partida Des"
+            }
+          }
+        },
+        {
+          "Direction": 2,
+          "Expression": {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "c1"
+                }
+              },
+              "Property": "Importe Contrato Total"
+            }
+          }
+        }
+      ]
+    },
+    "columnProperties": {
+      "contrato_contratista_det.partida": {
+        "displayName": "-"
+      },
+      "contrato_contratista_det.Partida Des": {
+        "displayName": "-"
+      },
+      "Sum(contrato_contratista_det.cantidad_contrato)": {
+        "formatString": null
+      },
+      "contrato_contratista.Importe Contrato Total": {
+        "displayName": "Importe Contrato"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.fecha_termino_contrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.fecha_inicio_contrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.FECHA_FIRMA_CONTRATO"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "67D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.id_convenio)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.importe_contrato_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.monto_Aditivas_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.monto_deductivas_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "285.00002034504996D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.nombre"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.numpro"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "327.6962931166185D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.Partida Des"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "52D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.partida"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "198.84616546952827D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.Importe Contrato Total"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "204.4615442632224D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.Importe Contrato Subtotal"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#60A61E'"
+                    }
+                  }
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "parentGroupName": "66c7181a1be384f9917c"
+}

@@ -1,0 +1,100 @@
+﻿model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-MX
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Errores en las consultas cargadas en 02/10/2025 03:52:05 p. m..
+queryGroup 'Errores en las consultas: 02/10/2025 03:52:05 p  m'
+
+	annotation PBI_QueryGroupOrder = 0
+
+/// Errores en las consultas cargadas en 13/10/2025 01:37:07 p. m..
+queryGroup 'Errores en las consultas: 13/10/2025 01:37:07 p  m'
+
+	annotation PBI_QueryGroupOrder = 1
+
+/// Errores en las consultas cargadas en 15/10/2025 04:21:54 p. m..
+queryGroup 'Errores en las consultas: 15/10/2025 04:21:54 p  m'
+
+	annotation PBI_QueryGroupOrder = 2
+
+/// Errores en las consultas cargadas en 07/11/2025 10:21:43 a. m..
+queryGroup 'Errores en las consultas: 07/11/2025 10:21:43 a  m'
+
+	annotation PBI_QueryGroupOrder = 3
+
+/// Errores en las consultas cargadas en 07/11/2025 01:09:27 p. m..
+queryGroup 'Errores en las consultas: 07/11/2025 01:09:27 p  m'
+
+	annotation PBI_QueryGroupOrder = 4
+
+/// Errores en las consultas cargadas en 07/11/2025 02:17:22 p. m..
+queryGroup 'Errores en las consultas: 07/11/2025 02:17:22 p  m'
+
+	annotation PBI_QueryGroupOrder = 5
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["centro_costo","clientes","desarrollos","empleados_solicito","empresas","orden_compra","tipos_centro","libre_abordo","orden_compra_det","insumos","embarque","almacen","puestos_solicito","almacen_cc","empleados_autorizo","empleados_reviso","puestos_autorizo","puestos_reviso","frentes","partidas","estimaciones_contratistas_tot","estimacion_obra","proveedores","contrato_contratista","contrato_contratista_det","movprov","amortizacion","amortizacion_contratista","amortizacion_contratista_det","presupuesto_base","presupuesto_compras","saldos_iniciales","pagado","obras","presupuesto_actualizado","sabana","desarrollos EK10","ubicacion_caracteristicas","ventas","ventas_ubicaciones","facturado"]
+
+ref table centro_costo
+ref table clientes
+ref table desarrollos
+ref table empleados_solicito
+ref table empresas
+ref table orden_compra
+ref table DateTableTemplate_840ce712-4bdc-44bd-8c39-c8b5d242bad5
+ref table LocalDateTable_29d7bf1d-2321-4b9f-a67a-da81a83e95ba
+ref table tipos_centro
+ref table libre_abordo
+ref table orden_compra_det
+ref table LocalDateTable_a354713e-0d1f-441a-8ad5-db34857c9bec
+ref table insumos
+ref table 'Forma de Pago'
+ref table embarque
+ref table almacen
+ref table puestos_solicito
+ref table almacen_cc
+ref table empleados_autorizo
+ref table empleados_reviso
+ref table puestos_autorizo
+ref table puestos_reviso
+ref table frentes
+ref table partidas
+ref table estimaciones_contratistas_tot
+ref table estimacion_obra
+ref table LocalDateTable_13d85fb7-0c26-4a67-904b-36d6b0d5b7ff
+ref table LocalDateTable_a0610437-481f-4513-bc0c-aed3178b2377
+ref table proveedores
+ref table contrato_contratista
+ref table LocalDateTable_03ee12b3-a977-4527-9653-b611e7a4a020
+ref table LocalDateTable_eb5287d7-99b3-493e-bfd3-5e6487ce9280
+ref table LocalDateTable_313019c3-19a9-4d46-9529-8699ce273c03
+ref table contrato_contratista_det
+ref table LocalDateTable_c2cabd9e-bd3d-414e-abe5-d209abaf52af
+ref table movprov
+ref table amortizacion
+ref table amortizacion_contratista
+ref table amortizacion_contratista_det
+ref table presupuesto_base
+ref table presupuesto_compras
+ref table saldos_iniciales
+ref table LocalDateTable_297bbf4c-01d0-4b0a-b59e-e8e0cdcbc2ff
+ref table pagado
+ref table LocalDateTable_c8bbc86b-736f-4e83-a197-1ba4868d27e8
+ref table LocalDateTable_d2582c23-e930-4e4d-8d79-2548fc2f67d0
+ref table obras
+ref table presupuesto_actualizado
+ref table sabana
+ref table 'desarrollos EK10'
+ref table ubicacion_caracteristicas
+ref table ventas
+ref table ventas_ubicaciones
+ref table Calendario
+ref table facturado
+
+ref cultureInfo es-ES
+

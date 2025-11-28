@@ -1,0 +1,83 @@
+﻿table clientes
+
+	column numcte
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: numcte
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_cliente
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nombre_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_exterior
+		dataType: string
+		summarizeBy: none
+		sourceColumn: no_exterior
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_interior
+		dataType: string
+		summarizeBy: none
+		sourceColumn: no_interior
+
+		annotation SummarizationSetBy = Automatic
+
+	column ubicacion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ubicacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cliente_ek10
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: id_cliente_ek10
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_venta_kv10
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: id_venta_kv10
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cliente
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	partition clientes = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    clientes_Sheet = Origen{[Item="clientes",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(clientes_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"numcte", Int64.Type}, {"nombre_cliente", type text}, {"no_exterior", type text}, {"no_interior", type text}, {"ubicacion", type text}, {"id_cliente_ek10", Int64.Type}, {"id_venta_kv10", Int64.Type}, {"source", type text}, {"id_cliente", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

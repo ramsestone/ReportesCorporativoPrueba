@@ -1,0 +1,98 @@
+{
+  "name": "e92bacc60c4261a74358",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 1073.8805970149253,
+        "y": 29.850746268656714,
+        "z": 3000,
+        "width": 365.67164179104475,
+        "height": 71.641791044776113,
+        "tabOrder": 3000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "slicer",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "centro_costo.Nombre Desarrollo",
+          "active": true
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "c",
+          "Entity": "centro_costo",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Nombre Desarrollo"
+          },
+          "Name": "centro_costo.Nombre Desarrollo",
+          "NativeReferenceName": "Obra"
+        }
+      ]
+    },
+    "columnProperties": {
+      "centro_costo.Nombre Desarrollo": {
+        "displayName": "Obra"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

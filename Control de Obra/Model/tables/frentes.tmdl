@@ -1,0 +1,51 @@
+﻿table frentes
+
+	column OBRA
+		dataType: string
+		summarizeBy: none
+		sourceColumn: OBRA
+
+		annotation SummarizationSetBy = Automatic
+
+	column FRENTE
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: FRENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DS_FRENTE
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DS_FRENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc = frentes[OBRA]&frentes[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition frentes = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    frentes_Sheet = Origen{[Item="frentes",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(frentes_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"OBRA", type text}, {"FRENTE", Int64.Type}, {"DS_FRENTE", type text}, {"source", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

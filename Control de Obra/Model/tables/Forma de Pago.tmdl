@@ -1,0 +1,40 @@
+﻿table 'Forma de Pago'
+
+	column Días
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Días]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Movimiento
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Movimiento]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Porcentaje
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Porcentaje]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Forma de Pago' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Días", STRING,
+				    "Movimiento", STRING,
+				    "Porcentaje", STRING,
+				    {
+				        { "1", "15 Después de Recibir Factura", "100.000%" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = e8b5df73b1ce48d098d74ffd1a8f8cdd
+

@@ -1,0 +1,98 @@
+{
+  "name": "7b5c6d2b0d7435dd6944",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 1439.55223880597,
+        "y": 29.850746268656714,
+        "z": 7000,
+        "width": 365.67164179104475,
+        "height": 71.641791044776113,
+        "tabOrder": 7000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "slicer",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "estimaciones_contratistas_tot.Estimacion Con Fecha",
+          "active": true
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "e",
+          "Entity": "estimaciones_contratistas_tot",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "Estimacion Con Fecha"
+          },
+          "Name": "estimaciones_contratistas_tot.Estimacion Con Fecha",
+          "NativeReferenceName": "Estimación"
+        }
+      ]
+    },
+    "columnProperties": {
+      "estimaciones_contratistas_tot.Estimacion Con Fecha": {
+        "displayName": "Estimación"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

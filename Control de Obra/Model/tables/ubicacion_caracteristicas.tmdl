@@ -1,0 +1,75 @@
+﻿table ubicacion_caracteristicas
+
+	column ID
+		dataType: int64
+		formatString: 0
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clave
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Clave
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Importe
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: Importe
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ubicacion.ID'
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Ubicacion.ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TipoCaracteristica.ID'
+		dataType: int64
+		formatString: 0
+		summarizeBy: count
+		sourceColumn: TipoCaracteristica.ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TipoCaracteristica.Nombre'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TipoCaracteristica.Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TipoEntidad.Nombre'
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TipoEntidad.Nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ubicacion_caracteristicas = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\ingresos_data.xlsx"), null, true),
+				    ubicacion_caracteristicas_Sheet = Origen{[Item="ubicacion_caracteristicas",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(ubicacion_caracteristicas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"ID", Int64.Type}, {"Clave", type text}, {"Nombre", type text}, {"Importe", Int64.Type}, {"Ubicacion.ID", Int64.Type}, {"TipoCaracteristica.ID", Int64.Type}, {"TipoCaracteristica.Nombre", type text}, {"TipoEntidad.Nombre", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Exception
+

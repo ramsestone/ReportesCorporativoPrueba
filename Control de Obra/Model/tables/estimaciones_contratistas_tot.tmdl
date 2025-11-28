@@ -1,0 +1,404 @@
+﻿table estimaciones_contratistas_tot
+
+	measure sum_importe = SUM(estimaciones_contratistas_tot[IMPORTE])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure sum_anticipo = SUM(estimaciones_contratistas_tot[ANTICIPOS])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure sum_devoluciones = SUM(estimaciones_contratistas_tot[DEVOLUCIONES])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure sum_amortizado = SUM(estimaciones_contratistas_tot[AMORTIZADO])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure Total = [sum_importe] + [sum_anticipo] + [sum_devoluciones] + [sum_amortizado]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure 'Total Neto' =
+			
+			[sum_importe] - [sum_amortizado] + [sum_anticipo]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	column OBRA
+		dataType: string
+		summarizeBy: none
+		sourceColumn: OBRA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMACION_ID
+		dataType: int64
+		formatString: 0
+		summarizeBy: count
+		sourceColumn: ESTIMACION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NUMPRO
+		dataType: string
+		summarizeBy: none
+		sourceColumn: NUMPRO
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMPORTE
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: IMPORTE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AMORTIZADO
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: AMORTIZADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANTICIPOS
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: ANTICIPOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEVOLUCIONES
+		dataType: double
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: DEVOLUCIONES
+
+		annotation SummarizationSetBy = Automatic
+
+	column CC
+		dataType: string
+		summarizeBy: none
+		sourceColumn: CC
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_convenio
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: id_convenio
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column orden_compra
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: orden_compra
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_orden_compra =
+			
+			VAR id_oc = estimaciones_contratistas_tot[orden_compra] & estimaciones_contratistas_tot[id_cc]
+			RETURN
+			IF(ISBLANK(estimaciones_contratistas_tot[orden_compra]), BLANK(), id_oc)
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Inicio =
+			
+			VAR fecha =LOOKUPVALUE(
+			        estimacion_obra[FECHA_INICIO],
+			        estimacion_obra[ESTIMACION_ID],
+			        estimaciones_contratistas_tot[ESTIMACION_ID])
+			
+			RETURN
+			FORMAT(fecha, "dd/mm/yyyy")
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha_Fin =
+			
+			VAR fecha = LOOKUPVALUE(
+			        estimacion_obra[FECHA_FIN],
+			        estimacion_obra[ESTIMACION_ID],
+			        estimaciones_contratistas_tot[ESTIMACION_ID])
+			
+			RETURN
+			FORMAT(fecha, "dd/mm/yyyy")
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cc_orden_compra =
+			
+			VAR cc_orden_compra = estimaciones_contratistas_tot[CC] & "-" & estimaciones_contratistas_tot[orden_compra]
+			 RETURN
+			 IF(ISBLANK(estimaciones_contratistas_tot[orden_compra]), BLANK(), cc_orden_compra)
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partida = 0
+		formatString: 0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimacion Con Fecha' =
+			
+			VAR fecha_inicio = FORMAT(estimaciones_contratistas_tot[Fecha_Inicio], "dd/mm/yyy")
+			VAR fecha_fin = FORMAT(estimaciones_contratistas_tot[Fecha_Fin], "dd/mm/yyy")
+			RETURN
+			estimaciones_contratistas_tot[ESTIMACION_ID] & " (" & fecha_inicio & " - " & fecha_fin & ")"
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Convenio ID' =
+			
+			estimaciones_contratistas_tot[id_convenio] & estimaciones_contratistas_tot[prov_id_cc]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FONDO_GARANTIA
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: FONDO_GARANTIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column descuento
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: descuento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column deducciones
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: deducciones
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ABONOS
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: ABONOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INTERESES
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: INTERESES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Facturado =
+			
+			VAR id_oc = estimaciones_contratistas_tot[id_orden_compra]
+			VAR facturado = CALCULATE(SUM(movprov[Facturado]), movprov[id_orden_compra] = id_oc)
+			RETURN
+			IF(ISBLANK(facturado), 0, facturado)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Monto Pagado' =
+			
+			VAR id_oc = estimaciones_contratistas_tot[id_orden_compra]
+			VAR factura = CALCULATE(MAX(movprov[factura]), movprov[referenciaoc] = 0)
+			RETURN
+			factura
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pagado =
+			
+			VAR id_oc = estimaciones_contratistas_tot[id_orden_compra]
+			RETURN
+			CALCULATE(SUM(movprov[Pagado]), movprov[id_orden_compra] = id_oc)
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-MX"}
+
+	column Amortizadoo =
+			
+			VAR convenio_Id = estimaciones_contratistas_tot[Convenio ID]
+			RETURN
+			CALCULATE(SUM(amortizacion_contratista[Amortizacion]), FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = convenio_Id))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amort Anticipos' =
+			
+			VAR estimacion = estimaciones_contratistas_tot[ESTIMACION_ID]
+			VAR prov_id = estimaciones_contratistas_tot[prov_id_cc]
+			VAR anticipo =
+			CALCULATE(
+			    [ANTICIPO_DET],
+			    FILTER(
+			        amortizacion_contratista_det,
+			        amortizacion_contratista_det[ESTIMACION_ID] = estimacion &&
+			        amortizacion_contratista_det[prov_id_cc] = prov_id
+			        ))
+			RETURN
+			IF(ISBLANK(anticipo), 0, anticipo)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amort FonGar' =
+			
+			VAR estimacion = estimaciones_contratistas_tot[ESTIMACION_ID]
+			VAR prov_id = estimaciones_contratistas_tot[prov_id_cc]
+			VAR fonGar =
+			CALCULATE(
+			    [FONGAR_DET],
+			    FILTER(
+			        amortizacion_contratista_det,
+			        amortizacion_contratista_det[ESTIMACION_ID] = estimacion &&
+			        amortizacion_contratista_det[prov_id_cc] = prov_id
+			        ))
+			RETURN
+			IF(ISBLANK(fonGar), 0, fonGar)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amort DispNom' =
+			--Amrotizacion Dispersion de Nomina
+			VAR estimacion = estimaciones_contratistas_tot[ESTIMACION_ID]
+			VAR prov_id = estimaciones_contratistas_tot[prov_id_cc]
+			VAR dispNom =
+			CALCULATE(
+			    [DISPNOM_DET],
+			    FILTER(
+			        amortizacion_contratista_det,
+			        amortizacion_contratista_det[ESTIMACION_ID] = estimacion &&
+			        amortizacion_contratista_det[prov_id_cc] = prov_id
+			        ))
+			RETURN
+			IF(ISBLANK(dispNom), 0, dispNom)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amort ISR' =
+			
+			VAR estimacion = estimaciones_contratistas_tot[ESTIMACION_ID]
+			VAR prov_id = estimaciones_contratistas_tot[prov_id_cc]
+			VAR isr =
+			CALCULATE(
+			    [ISR_DET],
+			    FILTER(
+			        amortizacion_contratista_det,
+			        amortizacion_contratista_det[ESTIMACION_ID] = estimacion &&
+			        amortizacion_contratista_det[prov_id_cc] = prov_id
+			        ))
+			RETURN
+			IF(ISBLANK(isr), 0, isr)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Factura =
+			
+			VAR current_id = estimaciones_contratistas_tot[id_orden_compra]
+			RETURN
+			CALCULATE(MAX(movprov[factura]), filter(movprov, movprov[id_orden_compra] = current_id))
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amort Garantia IMSS' =
+			
+			VAR estimacion = estimaciones_contratistas_tot[ESTIMACION_ID]
+			VAR prov_id = estimaciones_contratistas_tot[prov_id_cc]
+			VAR anticipo =
+			CALCULATE(
+			    [GARANTIA_IMSS_DET],
+			    FILTER(
+			        amortizacion_contratista_det,
+			        amortizacion_contratista_det[ESTIMACION_ID] = estimacion &&
+			        amortizacion_contratista_det[prov_id_cc] = prov_id
+			        ))
+			RETURN
+			IF(ISBLANK(anticipo), 0, anticipo)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition estimaciones_contratistas_tot = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    estimaciones_contratistas_tot_Sheet = Origen{[Item="estimaciones_contratistas_tot",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(estimaciones_contratistas_tot_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"OBRA", type text}, {"ESTIMACION_ID", Int64.Type}, {"NUMPRO", type text}, {"IMPORTE", type number}, {"AMORTIZADO", type number}, {"ANTICIPOS", type number}, {"DEVOLUCIONES", type number}, {"CC", type text}, {"id_convenio", Int64.Type}, {"source", type text}, {"orden_compra", Int64.Type}, {"FONDO_GARANTIA", type number}, {"descuento", type number}, {"deducciones", type number}, {"ABONOS", type number}, {"INTERESES", type number}, {"PAGADO", type number}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"PAGADO"}),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Columnas quitadas",{{"AMORTIZADO", type number}})
+				in
+				    #"Tipo cambiado1"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

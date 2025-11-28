@@ -1,0 +1,298 @@
+{
+  "objects": {
+    "columnWidth": [
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "114D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "contrato_contratista.fecha_termino_contrato"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "98D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "contrato_contratista.fecha_inicio_contrato"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "99D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "contrato_contratista.FECHA_FIRMA_CONTRATO"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "67D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Sum(contrato_contratista.id_convenio)"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "113D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Sum(contrato_contratista.importe_contrato_moneda)"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "101D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Sum(contrato_contratista.monto_Aditivas_moneda)"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "119D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "Sum(contrato_contratista.monto_deductivas_moneda)"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "285.00002034504996D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "proveedores.nombre"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "127D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "proveedores.numpro"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "170.09051207218528D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "contrato_contratista_det.frente"
+        }
+      },
+      {
+        "properties": {
+          "value": {
+            "expr": {
+              "Literal": {
+                "Value": "393.30747227492833D"
+              }
+            }
+          }
+        },
+        "selector": {
+          "metadata": "contrato_contratista_det.Frente Des"
+        }
+      }
+    ],
+    "grid": [
+      {
+        "properties": {
+          "outlineStyle": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "gridHorizontal": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "columnHeaders": [
+      {
+        "properties": {
+          "fontColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          },
+          "backColor": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#60A61E'"
+                  }
+                }
+              }
+            }
+          },
+          "alignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Left'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "projectionOrdering": {
+    "Values": [
+      0,
+      1
+    ]
+  },
+  "queryMetadata": {
+    "Select": [
+      {
+        "Restatement": "-",
+        "Name": "contrato_contratista_det.frente",
+        "Type": 2048
+      },
+      {
+        "Restatement": "Frente",
+        "Name": "contrato_contratista_det.Frente Des",
+        "Type": 2048
+      }
+    ]
+  },
+  "visualElements": [
+    {
+      "DataRoles": [
+        {
+          "Name": "Values",
+          "Projection": 0,
+          "isActive": false
+        },
+        {
+          "Name": "Values",
+          "Projection": 1,
+          "isActive": false
+        }
+      ]
+    }
+  ],
+  "selects": [
+    {
+      "displayName": "-",
+      "queryName": "contrato_contratista_det.frente",
+      "roles": {
+        "Values": true
+      },
+      "type": {
+        "category": null,
+        "underlyingType": 1
+      },
+      "expr": {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "contrato_contratista_det"
+            }
+          },
+          "Property": "frente"
+        }
+      }
+    },
+    {
+      "displayName": "Frente",
+      "queryName": "contrato_contratista_det.Frente Des",
+      "roles": {
+        "Values": true
+      },
+      "sort": 1,
+      "sortOrder": 0,
+      "type": {
+        "category": null,
+        "underlyingType": 1
+      },
+      "expr": {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "contrato_contratista_det"
+            }
+          },
+          "Property": "Frente Des"
+        }
+      }
+    }
+  ]
+}

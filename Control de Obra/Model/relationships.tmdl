@@ -1,0 +1,254 @@
+﻿relationship 9e8edd30-1249-4fee-a5af-74cfa596fe43
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orden_compra.fecha
+	toColumn: LocalDateTable_29d7bf1d-2321-4b9f-a67a-da81a83e95ba.Date
+
+relationship AutoDetected_b538e6be-b90d-4220-aa95-12096c0552c3
+	fromColumn: centro_costo.source
+	toColumn: empresas.source
+
+relationship AutoDetected_20a7cc61-6622-48df-8efc-0795fc806230
+	fromColumn: centro_costo.id_tc
+	toColumn: tipos_centro.id_tc
+
+relationship AutoDetected_e44a0db6-6d24-4de2-9571-e7ded7ceafd6
+	crossFilteringBehavior: bothDirections
+	fromColumn: centro_costo.id_desarrollo
+	toColumn: desarrollos.id_desarrollo
+
+relationship f62827e4-2405-a4e1-637b-eb4bdcb3cd91
+	crossFilteringBehavior: bothDirections
+	fromColumn: orden_compra.id_cc
+	toColumn: centro_costo.id_cc
+
+relationship fac80a74-744b-44bf-a20a-6ed13e3c42c5
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: libre_abordo.numero
+	toColumn: orden_compra.libre_abordo
+
+relationship 12646e37-30c9-404b-970f-19033319764c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orden_compra_det.fecha_entrega
+	toColumn: LocalDateTable_a354713e-0d1f-441a-8ad5-db34857c9bec.Date
+
+relationship 23eec8b1-8616-1c38-69fd-72b8549c5c4e
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: orden_compra_det.insumo
+	toColumn: insumos.insumo
+
+relationship f5f4da98-01f0-69ff-b8b8-c44cf73e4ade
+	fromColumn: orden_compra_det.id_orden_compra
+	toColumn: orden_compra.id_orden_compra
+
+relationship c6424d94-d9fa-f965-1b42-5410e35e2d58
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: embarque.id_cc
+	toColumn: orden_compra.id_cc
+
+relationship ef0321fa-1ce8-9633-c3be-6012190060e5
+	fromColumn: empleados_solicito.id_puesto
+	toColumn: puestos_solicito.id_puesto
+
+relationship 6e89a326-3537-8752-abb1-9812a4cfb734
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: almacen_cc.id_cc
+	toColumn: orden_compra.id_cc
+
+relationship 8a7ee86a-ea56-1a68-7859-c14baa176352
+	crossFilteringBehavior: bothDirections
+	fromColumn: almacen_cc.id_almacen
+	toColumn: almacen.id_almacen
+
+relationship 23844df5-e0b3-69c3-9e69-923bf013ef36
+	fromColumn: orden_compra.id_empleado_autorizo
+	toColumn: empleados_autorizo.id_empleado
+
+relationship 6889f9d0-af7c-fd0f-d4fa-40ce5f38a875
+	fromColumn: empleados_autorizo.id_puesto
+	toColumn: puestos_autorizo.id_puesto
+
+relationship 6721954b-d2f8-b950-af21-16f501368fc6
+	fromColumn: orden_compra.id_empleado_solicito
+	toColumn: empleados_solicito.id_empleado
+
+relationship 756a9693-b759-a2ef-a64e-ed309b0b4d89
+	fromColumn: orden_compra.id_empleado_reviso
+	toColumn: empleados_reviso.id_empleado
+
+relationship 43df3709-e7a4-30a1-f158-f47f7dddbe83
+	fromColumn: empleados_reviso.id_puesto
+	toColumn: puestos_reviso.id_puesto
+
+relationship f7d4981e-a144-4701-beba-ddf3864dcd89
+	joinOnDateBehavior: datePartOnly
+	fromColumn: estimacion_obra.FECHA_INICIO
+	toColumn: LocalDateTable_13d85fb7-0c26-4a67-904b-36d6b0d5b7ff.Date
+
+relationship d4e61739-3af2-483a-8a73-71660863ff1a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: estimacion_obra.FECHA_FIN
+	toColumn: LocalDateTable_a0610437-481f-4513-bc0c-aed3178b2377.Date
+
+relationship ad07881e-8e44-8ee9-fb5e-36e6e7d5bebd
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: estimaciones_contratistas_tot.id_cc
+	toColumn: estimacion_obra.id_cc
+
+relationship 19b65734-70ac-4c9c-f1f8-68e1bad6d69c
+	fromColumn: orden_compra.prov_id
+	toColumn: proveedores.prov_id
+
+relationship 9729f8e6-1572-48d1-bcb8-4eac05ccd6a0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contrato_contratista.fecha_inicio_contrato
+	toColumn: LocalDateTable_03ee12b3-a977-4527-9653-b611e7a4a020.Date
+
+relationship 6c041d1e-75e8-4e12-ba87-5b38368c994d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contrato_contratista.fecha_termino_contrato
+	toColumn: LocalDateTable_eb5287d7-99b3-493e-bfd3-5e6487ce9280.Date
+
+relationship 1ea682af-ca46-4c4f-8b0f-b281f838d0c7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contrato_contratista.FECHA_FIRMA_CONTRATO
+	toColumn: LocalDateTable_313019c3-19a9-4d46-9529-8699ce273c03.Date
+
+relationship 6794a787-9fc3-42ac-85fa-5a749ae20fd8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: contrato_contratista_det.fecha_movimiento
+	toColumn: LocalDateTable_c2cabd9e-bd3d-414e-abe5-d209abaf52af.Date
+
+relationship 502999d4-349e-596a-4683-f26212a77e64
+	fromColumn: contrato_contratista_det.'Convenio ID'
+	toColumn: contrato_contratista.'Convenio ID'
+
+relationship 2ea03f8a-9d5b-c101-a812-91d0b60ca8ed
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: contrato_contratista_det.id_cc
+	toColumn: frentes.id_cc
+
+relationship 8dd93610-cc85-e565-9339-7ef221d736c9
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: estimaciones_contratistas_tot.prov_id_cc
+	toColumn: orden_compra.prov_id_cc
+
+relationship 423e2189-ce48-f3a8-37d8-3959200cc4b1
+	fromColumn: movprov.id_orden_compra
+	toColumn: orden_compra.id_orden_compra
+
+relationship 158c30b2-e5fb-4026-1c16-90b2b8f4433e
+	fromColumn: amortizacion_contratista.'Convenio ID'
+	toColumn: contrato_contratista.'Convenio ID'
+
+relationship 9f3a559e-3ad7-b80a-09bc-7551d672ac4c
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: estimaciones_contratistas_tot.prov_id_cc
+	toColumn: contrato_contratista.prov_id_cc
+
+relationship b29ef3cc-6ecc-e22b-bd42-f2c3bf072b8f
+	fromColumn: estimaciones_contratistas_tot.'Convenio ID'
+	toColumn: contrato_contratista.'Convenio ID'
+
+relationship 9e455b4d-207f-f3b7-ae74-1d719173def3
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: amortizacion_contratista_det.'Convenio ID'
+	toColumn: estimaciones_contratistas_tot.'Convenio ID'
+
+relationship 868f64d1-9b9b-442b-8149-62b180140b3a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: saldos_iniciales.fecha
+	toColumn: LocalDateTable_297bbf4c-01d0-4b0a-b59e-e8e0cdcbc2ff.Date
+
+relationship 9fa30a2a-5d11-4cde-b247-7f9e5955df84
+	joinOnDateBehavior: datePartOnly
+	fromColumn: pagado.fecha
+	toColumn: LocalDateTable_c8bbc86b-736f-4e83-a197-1ba4868d27e8.Date
+
+relationship a9efc34e-bfa7-435b-ba9e-0894789c7f5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: pagado.fechavenc
+	toColumn: LocalDateTable_d2582c23-e930-4e4d-8d79-2548fc2f67d0.Date
+
+relationship aaab6421-1dc6-2031-9acc-ad9b9b13d34b
+	fromColumn: presupuesto_base.id_obra
+	toColumn: obras.id_obra
+
+relationship 4d865a88-92b1-3999-358d-0aed1c016a63
+	fromColumn: presupuesto_actualizado.id_obra
+	toColumn: obras.id_obra
+
+relationship 88d4660d-c0b3-90ca-7694-8f73353d95ac
+	fromColumn: pagado.id_cc
+	toColumn: obras.id_obra
+
+relationship 464c977b-9802-3be5-d4c5-3ab5a3493cb8
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: presupuesto_compras.id_obra
+	toColumn: obras.id_obra
+
+relationship 36c005cb-fb29-5db0-eb68-825670c0f9c2
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: obras.id_obra
+	toColumn: centro_costo.id_cc
+
+relationship AutoDetected_569f02d7-8b1c-4ed2-9db1-1443f5c39a34
+	fromColumn: sabana.IdDesarrollo
+	toColumn: 'desarrollos EK10'.IdDesarrollo
+
+relationship e4f3f18d-3c07-99c7-2bcb-be62cb6c8df6
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: desarrollos.descripcion_desarrollo
+	toColumn: 'desarrollos EK10'.'Nombre Desarrollo Ek9'
+
+relationship c0532cec-3d27-7bf6-9516-31fa227cf728
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: ubicacion_caracteristicas.'Ubicacion.ID'
+	toColumn: ventas_ubicaciones.IdUbicacion
+
+relationship cef95027-8162-e008-1642-c1c03a9b1fcf
+	fromColumn: ventas_ubicaciones.IdVenta
+	toColumn: ventas.ID
+
+relationship b5697f8c-b050-749e-d952-f8d8616321f0
+	fromColumn: clientes.id_cliente_ek10
+	toColumn: ventas.ID
+
+relationship AutoDetected_ce0e6049-7632-4399-a219-d51aa5cba040
+	isActive: false
+	fromColumn: sabana.IdExpediente
+	toColumn: ventas.IdExpediente
+
+relationship 5d1addd5-2cc2-0422-256e-c51bc25ff8e6
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: clientes.numcte
+	toColumn: sabana.ClientesEK9
+
+relationship c41029a5-3523-adfa-e228-3db593764863
+	fromColumn: sabana.source
+	toColumn: empresas.source
+
+relationship AutoDetected_095c4e2e-80ef-4d54-a710-83be69482962
+	isActive: false
+	fromColumn: facturado.id_cc
+	toColumn: obras.id_obra
+
+relationship afeadaa5-4b29-8932-7da7-2497d2519453
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: orden_compra.numero
+	toColumn: facturado.referenciaoc
+

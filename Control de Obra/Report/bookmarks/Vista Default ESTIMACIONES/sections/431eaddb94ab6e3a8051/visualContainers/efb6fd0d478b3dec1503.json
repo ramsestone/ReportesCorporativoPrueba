@@ -1,0 +1,53 @@
+{
+  "filters": {
+    "byExpr": [
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "frente"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Frente Des"
+          }
+        },
+        "howCreated": 0
+      }
+    ]
+  },
+  "singleVisual": {
+    "visualType": "tableEx",
+    "objects": {},
+    "orderBy": [
+      {
+        "Direction": 1,
+        "Expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Frente Des"
+          }
+        }
+      }
+    ]
+  }
+}

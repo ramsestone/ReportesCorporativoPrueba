@@ -1,0 +1,94 @@
+{
+  "filters": {
+    "byExpr": [
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "partida"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Partida Des"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "Importe Contrato Total"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Importe Contrato Subtotal"
+          }
+        },
+        "howCreated": 0
+      }
+    ]
+  },
+  "singleVisual": {
+    "visualType": "tableEx",
+    "objects": {},
+    "orderBy": [
+      {
+        "Direction": 1,
+        "Expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Partida Des"
+          }
+        }
+      },
+      {
+        "Direction": 2,
+        "Expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "Importe Contrato Total"
+          }
+        }
+      }
+    ]
+  }
+}

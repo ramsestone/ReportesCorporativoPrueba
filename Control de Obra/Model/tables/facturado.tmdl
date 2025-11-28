@@ -1,0 +1,303 @@
+﻿table facturado
+
+	column numpro
+		dataType: string
+		summarizeBy: none
+		sourceColumn: numpro
+
+		annotation SummarizationSetBy = Automatic
+
+	column factura
+		dataType: string
+		summarizeBy: none
+		sourceColumn: factura
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha
+		dataType: string
+		summarizeBy: none
+		sourceColumn: fecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column tm
+		dataType: string
+		summarizeBy: none
+		sourceColumn: tm
+
+		annotation SummarizationSetBy = Automatic
+
+	column fechavenc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: fechavenc
+
+		annotation SummarizationSetBy = Automatic
+
+	column concepto
+		dataType: string
+		summarizeBy: none
+		sourceColumn: concepto
+
+		annotation SummarizationSetBy = Automatic
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column referenciaoc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: referenciaoc
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto
+		dataType: string
+		summarizeBy: none
+		sourceColumn: monto
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipocambio
+		dataType: string
+		summarizeBy: none
+		sourceColumn: tipocambio
+
+		annotation SummarizationSetBy = Automatic
+
+	column iva
+		dataType: string
+		summarizeBy: none
+		sourceColumn: iva
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: string
+		summarizeBy: none
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column poliza
+		dataType: string
+		summarizeBy: none
+		sourceColumn: poliza
+
+		annotation SummarizationSetBy = Automatic
+
+	column tp
+		dataType: string
+		summarizeBy: none
+		sourceColumn: tp
+
+		annotation SummarizationSetBy = Automatic
+
+	column es_factura
+		dataType: string
+		summarizeBy: none
+		sourceColumn: es_factura
+
+		annotation SummarizationSetBy = Automatic
+
+	column autorizapago
+		dataType: string
+		summarizeBy: none
+		sourceColumn: autorizapago
+
+		annotation SummarizationSetBy = Automatic
+
+	column total
+		dataType: string
+		summarizeBy: none
+		sourceColumn: total
+
+		annotation SummarizationSetBy = Automatic
+
+	column folio_gxc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: folio_gxc
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_orden
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_orden
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_retencion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_retencion
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_factura
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_factura
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_proveedor
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_proveedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column refoc_num
+		dataType: string
+		summarizeBy: none
+		sourceColumn: refoc_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_orden_norm
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_orden_norm
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto_compra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: monto_compra
+
+		annotation SummarizationSetBy = Automatic
+
+	column porcentaje_facturado
+		dataType: string
+		summarizeBy: none
+		sourceColumn: porcentaje_facturado
+
+		annotation SummarizationSetBy = Automatic
+
+	column porcentaje_iva_facturado
+		dataType: string
+		summarizeBy: none
+		sourceColumn: porcentaje_iva_facturado
+
+		annotation SummarizationSetBy = Automatic
+
+	column retencion_total
+		dataType: string
+		summarizeBy: none
+		sourceColumn: retencion_total
+
+		annotation SummarizationSetBy = Automatic
+
+	column porcentaje_retencion_facturado
+		dataType: string
+		summarizeBy: none
+		sourceColumn: porcentaje_retencion_facturado
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto_iva
+		dataType: string
+		summarizeBy: none
+		sourceColumn: monto_iva
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_sin_tm24
+		dataType: string
+		summarizeBy: none
+		sourceColumn: total_sin_tm24
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_fact_con_IVA
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Total_fact_con_IVA
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_sin_tm24col
+		dataType: string
+		summarizeBy: none
+		sourceColumn: total_sin_tm24col
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_con_tm24
+		dataType: string
+		summarizeBy: none
+		sourceColumn: total_con_tm24
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto_solo_tm24
+		dataType: string
+		summarizeBy: none
+		sourceColumn: monto_solo_tm24
+
+		annotation SummarizationSetBy = Automatic
+
+	column iva_solo_tm24
+		dataType: string
+		summarizeBy: none
+		sourceColumn: iva_solo_tm24
+
+		annotation SummarizationSetBy = Automatic
+
+	column subtotal_mas_tm24
+		dataType: string
+		summarizeBy: none
+		sourceColumn: subtotal_mas_tm24
+
+		annotation SummarizationSetBy = Automatic
+
+	column facturado_total_tm24
+		dataType: string
+		summarizeBy: none
+		sourceColumn: facturado_total_tm24
+
+		annotation SummarizationSetBy = Automatic
+
+	partition facturado = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\proforma_data.xlsx"), null, true),
+				    facturado_Sheet = Origen{[Item="facturado",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(facturado_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Encabezados promovidos"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

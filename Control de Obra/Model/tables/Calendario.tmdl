@@ -1,0 +1,125 @@
+﻿table Calendario
+
+	column Date
+		isNameInferred
+		sourceColumn: [Date]
+
+	column Año
+		isNameInferred
+		sourceColumn: [Año]
+
+	column Mes
+		isNameInferred
+		sourceColumn: [Mes]
+
+	column Día
+		isNameInferred
+		sourceColumn: [Día]
+
+	column NombreMes
+		isNameInferred
+		sourceColumn: [NombreMes]
+
+	column NombreMesCorto
+		isNameInferred
+		sourceColumn: [NombreMesCorto]
+
+	column Trimestre
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+	column AñoTrimestre
+		isNameInferred
+		sourceColumn: [AñoTrimestre]
+
+	column SemanaAño
+		isNameInferred
+		sourceColumn: [SemanaAño]
+
+	column DíaSemana
+		isNameInferred
+		sourceColumn: [DíaSemana]
+
+	column NombreDía
+		isNameInferred
+		sourceColumn: [NombreDía]
+
+	column NombreDíaCorto
+		isNameInferred
+		sourceColumn: [NombreDíaCorto]
+
+	column MesAño
+		isNameInferred
+		sourceColumn: [MesAño]
+
+	column FechaTexto
+		isNameInferred
+		sourceColumn: [FechaTexto]
+
+	column EsFinDeSemana
+		isNameInferred
+		sourceColumn: [EsFinDeSemana]
+
+	column DíaDelAño
+		isNameInferred
+		sourceColumn: [DíaDelAño]
+
+	column DíasEnMes
+		isNameInferred
+		sourceColumn: [DíasEnMes]
+
+	column FinDeMes
+		isNameInferred
+		sourceColumn: [FinDeMes]
+
+	column EsUltimoDiaMes
+		isNameInferred
+		sourceColumn: [EsUltimoDiaMes]
+
+	column TrimestreNum
+		isNameInferred
+		sourceColumn: [TrimestreNum]
+
+	column Semestre
+		isNameInferred
+		sourceColumn: [Semestre]
+
+	column AñoSemestre
+		isNameInferred
+		sourceColumn: [AñoSemestre]
+
+	partition Calendario = calculated
+		mode: import
+		source =
+				
+				VAR MinFecha = MIN(facturado[fechavenc])  // Reemplaza con tu columna de fecha
+				VAR MaxFecha = MAX(facturado[fechavenc])  // Reemplaza con tu columna de fecha
+				
+				RETURN
+				ADDCOLUMNS(
+				    CALENDAR(MinFecha, MaxFecha),
+				    "Año", YEAR([Date]),
+				    "Mes", MONTH([Date]),
+				    "Día", DAY([Date]),
+				    "NombreMes", FORMAT([Date], "MMMM"),
+				    "NombreMesCorto", FORMAT([Date], "MMM"),
+				    "Trimestre", "T" & FORMAT([Date], "Q"),
+				    "AñoTrimestre", FORMAT([Date], "YYYY") & " T" & FORMAT([Date], "Q"),
+				    "SemanaAño", WEEKNUM([Date], 2),  // Semana comienza en lunes (ISO)
+				    "DíaSemana", WEEKDAY([Date], 2),  // 1=Lunes, 7=Domingo
+				    "NombreDía", FORMAT([Date], "dddd"),
+				    "NombreDíaCorto", FORMAT([Date], "ddd"),
+				    "MesAño", FORMAT([Date], "YYYY-MM"),
+				    "FechaTexto", FORMAT([Date], "YYYY-MM-DD"),
+				    "EsFinDeSemana", IF(WEEKDAY([Date], 2) > 5, 1, 0),
+				    "DíaDelAño", DATEDIFF(DATE(YEAR([Date]), 1, 1), [Date], DAY) + 1,
+				    "DíasEnMes", DAY(EOMONTH([Date], 0)),
+				    "FinDeMes", EOMONTH([Date], 0),
+				    "EsUltimoDiaMes", IF([Date] = EOMONTH([Date], 0), 1, 0),
+				    "TrimestreNum", QUARTER([Date]),
+				    "Semestre", IF(MONTH([Date]) <= 6, 1, 2),
+				    "AñoSemestre", FORMAT([Date], "YYYY") & " S" & IF(MONTH([Date]) <= 6, 1, 2)
+				)
+
+	annotation PBI_Id = 3d031981fed242efbdbf5fad08088def
+

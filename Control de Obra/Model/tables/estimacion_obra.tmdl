@@ -1,0 +1,76 @@
+﻿table estimacion_obra
+
+	column OBRA
+		dataType: string
+		summarizeBy: none
+		sourceColumn: OBRA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMACION_ID
+		dataType: int64
+		formatString: 0
+		summarizeBy: count
+		sourceColumn: ESTIMACION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA_INICIO
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: FECHA_INICIO
+
+		variation Variación
+			isDefault
+			relationship: f7d4981e-a144-4701-beba-ddf3864dcd89
+			defaultHierarchy: LocalDateTable_13d85fb7-0c26-4a67-904b-36d6b0d5b7ff.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FECHA_FIN
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: FECHA_FIN
+
+		variation Variación
+			isDefault
+			relationship: d4e61739-3af2-483a-8a73-71660863ff1a
+			defaultHierarchy: LocalDateTable_a0610437-481f-4513-bc0c-aed3178b2377.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition estimacion_obra = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    estimacion_obra_Sheet = Origen{[Item="estimacion_obra",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(estimacion_obra_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"OBRA", type text}, {"ESTIMACION_ID", Int64.Type}, {"FECHA_INICIO", type date}, {"FECHA_FIN", type date}, {"source", type text}, {"id_cc", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

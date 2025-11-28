@@ -1,0 +1,42 @@
+{
+  "name": "e0ea1d2a18aac510d185",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 48.421052631578952,
+        "y": 309.79511278194195,
+        "z": 44000,
+        "width": 73.15789473684211,
+        "height": 31.578947368421055,
+        "tabOrder": 38000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Dirección :",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

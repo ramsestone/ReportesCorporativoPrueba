@@ -1,0 +1,269 @@
+{
+  "filters": {
+    "byExpr": [
+      {
+        "type": "Advanced",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "ESTIMACION_ID"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "CC"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "Fecha_Inicio"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "Fecha_Fin"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "orden_compra"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "sum_importe"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "proveedores"
+              }
+            },
+            "Property": "numpro"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "proveedores"
+              }
+            },
+            "Property": "nombre"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "id_convenio"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "estimaciones_contratistas_tot"
+                  }
+                },
+                "Property": "Amort Anticipos"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "estimaciones_contratistas_tot"
+                  }
+                },
+                "Property": "Amort FonGar"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "estimaciones_contratistas_tot"
+                  }
+                },
+                "Property": "Amort DispNom"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "estimaciones_contratistas_tot"
+                  }
+                },
+                "Property": "Amort ISR"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "Total Neto"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "sum_amortizado"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "Factura"
+          }
+        },
+        "howCreated": 0
+      }
+    ]
+  },
+  "singleVisual": {
+    "visualType": "tableEx",
+    "objects": {},
+    "orderBy": [
+      {
+        "Direction": 2,
+        "Expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "Factura"
+          }
+        }
+      }
+    ]
+  }
+}

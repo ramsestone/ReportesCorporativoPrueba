@@ -1,0 +1,707 @@
+{
+  "name": "30b2f466d05e8755e9b3",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "height": 1001.5476190476194,
+        "width": 1394.3634596695822,
+        "x": 0,
+        "y": 191.78571428571422,
+        "z": 3000,
+        "tabOrder": 0
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "tableEx",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "contrato_contratista_det.insumo"
+        },
+        {
+          "queryRef": "Sum(contrato_contratista_det.precio_contrato)"
+        },
+        {
+          "queryRef": "Sum(contrato_contratista_det.Importe Contrato Base Columna)"
+        },
+        {
+          "queryRef": "Sum(contrato_contratista_det.Aditivas Clumna)"
+        },
+        {
+          "queryRef": "Sum(contrato_contratista_det.Deductivas Column)"
+        },
+        {
+          "queryRef": "contrato_contratista_det.frente"
+        },
+        {
+          "queryRef": "contrato_contratista_det.Frente Des"
+        },
+        {
+          "queryRef": "contrato_contratista_det.partida"
+        },
+        {
+          "queryRef": "contrato_contratista_det.Partida Des"
+        },
+        {
+          "queryRef": "contrato_contratista_det.fecha_movimiento"
+        },
+        {
+          "queryRef": "contrato_contratista_det.status"
+        },
+        {
+          "queryRef": "Sum(contrato_contratista_det.usuario)"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "c",
+          "Entity": "contrato_contratista_det",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "insumo"
+          },
+          "Name": "contrato_contratista_det.insumo",
+          "NativeReferenceName": "Insumo"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "precio_contrato"
+          },
+          "Name": "Sum(contrato_contratista_det.precio_contrato)",
+          "NativeReferenceName": "Precio por Lote"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "frente"
+          },
+          "Name": "contrato_contratista_det.frente",
+          "NativeReferenceName": "Frente"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "partida"
+          },
+          "Name": "contrato_contratista_det.partida",
+          "NativeReferenceName": "Partida"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Frente Des"
+          },
+          "Name": "contrato_contratista_det.Frente Des",
+          "NativeReferenceName": "Descripción1"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "Partida Des"
+          },
+          "Name": "contrato_contratista_det.Partida Des",
+          "NativeReferenceName": "Descripción"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "fecha_movimiento"
+          },
+          "Name": "contrato_contratista_det.fecha_movimiento",
+          "NativeReferenceName": "Fecha Autorizado"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "status"
+          },
+          "Name": "contrato_contratista_det.status",
+          "NativeReferenceName": "Status"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "c"
+              }
+            },
+            "Property": "usuario"
+          },
+          "Name": "Sum(contrato_contratista_det.usuario)",
+          "NativeReferenceName": "usuario"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "Aditivas Clumna"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(contrato_contratista_det.Aditivas Clumna)",
+          "NativeReferenceName": "Aditivas1"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "Deductivas Column"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(contrato_contratista_det.Deductivas Column)",
+          "NativeReferenceName": "Deductivas1"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "Importe Contrato Base Columna"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(contrato_contratista_det.Importe Contrato Base Columna)",
+          "NativeReferenceName": "Importe Contrato Base1"
+        }
+      ]
+    },
+    "columnProperties": {
+      "Sum(contrato_contratista_det.precio_contrato)": {
+        "displayName": "Precio por Lote",
+        "formatString": "\\$#,0.00;-\\$#,0.00;\\$#,0.00"
+      },
+      "Sum(contrato_contratista_det.cantidad_contrato)": {
+        "formatString": null
+      },
+      "contrato_contratista_det.fecha_movimiento": {
+        "formatString": "d",
+        "displayName": "Fecha Autorizado"
+      },
+      "Sum(contrato_contratista_det.usuario)": {
+        "displayName": "Emp. Autoriza"
+      },
+      "contrato_contratista_det.status": {
+        "displayName": "Status"
+      },
+      "contrato_contratista_det.Partida Des": {
+        "displayName": "Descripción"
+      },
+      "contrato_contratista_det.partida": {
+        "displayName": "Partida"
+      },
+      "contrato_contratista_det.Frente Des": {
+        "displayName": "Descripción"
+      },
+      "contrato_contratista_det.frente": {
+        "displayName": "Frente"
+      },
+      "contrato_contratista_det.insumo": {
+        "displayName": "Insumo"
+      },
+      "Sum(contrato_contratista_det.Aditivas Clumna)": {
+        "displayName": "Aditivas"
+      },
+      "Sum(contrato_contratista_det.Deductivas Column)": {
+        "displayName": "Deductivas"
+      },
+      "Sum(contrato_contratista_det.Importe Contrato Base Columna)": {
+        "displayName": "Importe Contrato Base"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#60A61E'"
+                    }
+                  }
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.fecha_termino_contrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.fecha_inicio_contrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.FECHA_FIRMA_CONTRATO"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "67D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.id_convenio)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.importe_contrato_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.monto_Aditivas_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.monto_deductivas_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "285.00002034504996D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.nombre"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.numpro"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "156.66557801234563D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.Frente Des"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "220.23559986659495D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.Partida Des"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "61D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.insumo"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista_det.precio_contrato)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.frente"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "52D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.partida"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.fecha_movimiento"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "58.70212959956897D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.status"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101.97869981847559D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista_det.usuario)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141.0334767148365D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista_det.Aditivas Clumna)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "157.1399831543329D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista_det.Deductivas Column)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "176.43725960212842D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista_det.Importe Contrato Base Columna)"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.status"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista_det.usuario)"
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "parentGroupName": "66c7181a1be384f9917c"
+}

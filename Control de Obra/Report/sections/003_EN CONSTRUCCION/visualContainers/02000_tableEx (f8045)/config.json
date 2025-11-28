@@ -1,0 +1,513 @@
+{
+  "name": "f80454b4cc49bcbb54e6",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 16,
+        "y": 160,
+        "z": 2000,
+        "width": 976,
+        "height": 160,
+        "tabOrder": 2000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "tableEx",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "Sum(presupuesto_base (2).importe)"
+        },
+        {
+          "queryRef": "presupuesto_compras.presupuesto_compras_real"
+        },
+        {
+          "queryRef": "Sum(saldos_iniciales.total)"
+        },
+        {
+          "queryRef": "Sum(pagado.total)"
+        },
+        {
+          "queryRef": "pagado.Total_SI_Pagadoo"
+        },
+        {
+          "queryRef": "pagado.Pendiente por Pagar"
+        },
+        {
+          "queryRef": "pagado.Avance Financiero"
+        },
+        {
+          "queryRef": "sabana.No Departamentos"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "p",
+          "Entity": "presupuesto_base",
+          "Type": 0
+        },
+        {
+          "Name": "p1",
+          "Entity": "presupuesto_compras",
+          "Type": 0
+        },
+        {
+          "Name": "s",
+          "Entity": "saldos_iniciales",
+          "Type": 0
+        },
+        {
+          "Name": "p2",
+          "Entity": "pagado",
+          "Type": 0
+        },
+        {
+          "Name": "s1",
+          "Entity": "sabana",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "p"
+                  }
+                },
+                "Property": "importe"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(presupuesto_base (2).importe)",
+          "NativeReferenceName": "PPTO BASE SIN IVA"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "p1"
+                  }
+                },
+                "Property": "presupuesto_compras_real"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "presupuesto_compras.presupuesto_compras_real",
+          "NativeReferenceName": "Suma de presupuesto_compras_real"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "s"
+                  }
+                },
+                "Property": "total"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(saldos_iniciales.total)",
+          "NativeReferenceName": "ASTRATA + ADD"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "p2"
+              }
+            },
+            "Property": "Total_SI_Pagadoo"
+          },
+          "Name": "pagado.Total_SI_Pagadoo",
+          "NativeReferenceName": "PAGADO"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "p2"
+                  }
+                },
+                "Property": "total"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(pagado.total)",
+          "NativeReferenceName": "ENKONTROL"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "p2"
+              }
+            },
+            "Property": "Pendiente por Pagar"
+          },
+          "Name": "pagado.Pendiente por Pagar",
+          "NativeReferenceName": "Pendiente por Pagar"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "p2"
+              }
+            },
+            "Property": "Avance Financiero"
+          },
+          "Name": "pagado.Avance Financiero",
+          "NativeReferenceName": "Avance Financiero"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "s1"
+              }
+            },
+            "Property": "No Departamentos"
+          },
+          "Name": "sabana.No Departamentos",
+          "NativeReferenceName": "No Departamentos"
+        }
+      ]
+    },
+    "columnProperties": {
+      "Sum(presupuesto_base (2).importe)": {
+        "displayName": "PPTO BASE SIN IVA"
+      },
+      "presupuesto_compras.presupuesto_compras_real": {
+        "displayName": "PPTO REAL"
+      },
+      "Sum(saldos_iniciales.total)": {
+        "displayName": "ASTRATA + ADD"
+      },
+      "pagado.Total_SI_Pagadoo": {
+        "displayName": "PAGADO"
+      },
+      "Sum(pagado.total)": {
+        "displayName": "ENKONTROL"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#60A61E'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.fecha_termino_contrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.fecha_inicio_contrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista.FECHA_FIRMA_CONTRATO"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "67D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.id_convenio)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.importe_contrato_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.monto_Aditivas_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(contrato_contratista.monto_deductivas_moneda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "285.00002034504996D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.nombre"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.numpro"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "170.09051207218528D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.frente"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "393.30747227492833D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "contrato_contratista_det.Frente Des"
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

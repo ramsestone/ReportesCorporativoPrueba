@@ -1,0 +1,472 @@
+{
+  "filters": {
+    "byExpr": [
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "FECHA_FIRMA_CONTRATO"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "id_convenio"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "fecha_inicio_contrato"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "fecha_termino_contrato"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "proveedores"
+              }
+            },
+            "Property": "nombre"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Categorical",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "proveedores"
+              }
+            },
+            "Property": "numpro"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "IVA"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista"
+              }
+            },
+            "Property": "Importe Contrato Total"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "contrato_contratista"
+                  }
+                },
+                "Property": "Facturado"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "contrato_contratista"
+                  }
+                },
+                "Property": "Pagado"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Importe Contrato Base"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Deductivas"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "contrato_contratista_det"
+              }
+            },
+            "Property": "Importe Contrato Subtotal"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "Fondo Garantía Limite"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "Anticipo Obra"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "Dispersion Nomina"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "ISR"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "Porc Fondo Garantia"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "Porc Anticipo Obra"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "Porcentaje Dispercón Nómina"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amortizacion_contratista"
+                  }
+                },
+                "Property": "Porcentaje ISR"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amortizacion_contratista_det"
+              }
+            },
+            "Property": "ANTICIPO_DET"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amortizacion_contratista_det"
+              }
+            },
+            "Property": "FONGAR_DET"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amortizacion_contratista_det"
+              }
+            },
+            "Property": "DISPNOM_DET"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amortizacion_contratista_det"
+              }
+            },
+            "Property": "ISR_DET"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "estimaciones_contratistas_tot"
+              }
+            },
+            "Property": "sum_amortizado"
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "contrato_contratista_det"
+                  }
+                },
+                "Property": "Aditivas Clumna"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "howCreated": 0
+      },
+      {
+        "type": "Advanced",
+        "expression": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amortizacion_contratista_det"
+              }
+            },
+            "Property": "Total de Anticipo"
+          }
+        },
+        "howCreated": 0
+      }
+    ]
+  },
+  "singleVisual": {
+    "visualType": "tableEx",
+    "objects": {},
+    "orderBy": [
+      {
+        "Direction": 1,
+        "Expression": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "proveedores"
+              }
+            },
+            "Property": "numpro"
+          }
+        }
+      }
+    ]
+  }
+}

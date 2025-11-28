@@ -1,0 +1,247 @@
+﻿table contrato_contratista_det
+
+	measure 'Importe Contrato Base' =
+			
+			CALCULATE(SUM(contrato_contratista_det[cantidad_contrato]), FILTER(contrato_contratista_det, contrato_contratista_det[TIPO] = "B"))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure Aditivas = ```
+			
+			VAR aditivas = 
+			CALCULATE(SUM(contrato_contratista_det[cantidad_contrato]), FILTER(contrato_contratista_det, contrato_contratista_det[TIPO] = "A"))
+			RETURN
+			aditivas
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure Deductivas =
+			
+			VAR deductivas =
+			CALCULATE(SUM(contrato_contratista_det[cantidad_contrato]), FILTER(contrato_contratista_det, contrato_contratista_det[TIPO] = "D"))
+			RETURN
+			deductivas
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-US"}
+
+	measure 'Importe Contrato Subtotal' =
+			
+			[Importe Contrato Base] + [Aditivas] - [Deductivas]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	column obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: obra
+
+		annotation SummarizationSetBy = Automatic
+
+	column numpro
+		dataType: string
+		summarizeBy: none
+		sourceColumn: numpro
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_convenio
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: id_convenio
+
+		annotation SummarizationSetBy = Automatic
+
+	column frente
+		dataType: string
+		summarizeBy: none
+		sourceColumn: frente
+
+		annotation SummarizationSetBy = Automatic
+
+	column partida
+		dataType: string
+		summarizeBy: none
+		sourceColumn: partida
+
+		annotation SummarizationSetBy = Automatic
+
+	column insumo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: insumo
+
+		annotation SummarizationSetBy = Automatic
+
+	column lote_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: lote_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column cantidad_contrato
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: cantidad_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column precio_contrato
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: precio_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column usuario
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_movimiento
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: fecha_movimiento
+
+		variation Variación
+			isDefault
+			relationship: 6794a787-9fc3-42ac-85fa-5a749ae20fd8
+			defaultHierarchy: LocalDateTable_c2cabd9e-bd3d-414e-abe5-d209abaf52af.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Convenio ID' = contrato_contratista_det[id_convenio] & contrato_contratista_det[prov_id_cc]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Frente Des' = ```
+			
+			    LOOKUPVALUE(
+			        frentes[DS_FRENTE],
+			        frentes[FRENTE], VALUE(contrato_contratista_det[frente]),
+			        frentes[id_cc], contrato_contratista_det[id_cc])
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Partida Des' = ```
+			
+			    LOOKUPVALUE(
+			        partidas[DS_PARTIDA],
+			        partidas[PARTIDA], VALUE(contrato_contratista_det[partida]),
+			        partidas[id_cc], contrato_contratista_det[id_cc])
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo Letra' = ```
+			
+			IF(contrato_contratista_det[TIPO] = "B", "Contrato Base", 
+			IF(contrato_contratista_det[TIPO] = "A", "Anticipo",
+			IF(contrato_contratista_det[TIPO] = "D", "Deductivas de Nómina"
+			)))
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aditivas Clumna' =
+			
+			VAR aditivas =
+			    IF(contrato_contratista_det[TIPO] = "A", contrato_contratista_det[cantidad_contrato])
+			RETURN
+			IF(ISBLANK(aditivas), 0, aditivas)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deductivas Column' =
+			
+			VAR deductivas =
+			    IF(contrato_contratista_det[TIPO] = "D", contrato_contratista_det[cantidad_contrato])
+			RETURN
+			IF(ISBLANK(deductivas), 0, deductivas)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Importe Contrato Base Columna' =
+			
+			VAR deductivas =
+			    IF(contrato_contratista_det[TIPO] = "B", contrato_contratista_det[cantidad_contrato])
+			RETURN
+			IF(ISBLANK(deductivas), 0, deductivas)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition contrato_contratista_det = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    contrato_contratista_det_Sheet = Origen{[Item="contrato_contratista_det",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(contrato_contratista_det_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"obra", type text}, {"numpro", type text}, {"id_convenio", Int64.Type}, {"frente", type text}, {"partida", type text}, {"insumo", type text}, {"lote_id", type text}, {"cantidad_contrato", type number}, {"precio_contrato", Int64.Type}, {"status", type text}, {"usuario", Int64.Type}, {"fecha_movimiento", type datetime}, {"source", type text}, {"id_cc", type text}, {"prov_id_cc", type text}, {"prov_id", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

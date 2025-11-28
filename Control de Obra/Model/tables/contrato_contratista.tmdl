@@ -1,0 +1,373 @@
+﻿table contrato_contratista
+
+	measure sum_importee = SUM(contrato_contratista[IMPORTE_CONTRATO])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure sum_aditivas = SUM(contrato_contratista[MONTO_ADITIVAS])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure sum_deductivas = SUM(contrato_contratista[MONTO_DEDUCTIVAS])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure 'Importe Contrato Sub Total' = [sum_importee] + [sum_aditivas] - [sum_deductivas]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure 'Importe Contrato Total' = [Importe Contrato Subtotal] + ([Importe Contrato Subtotal]*CALCULATE(SUM(contrato_contratista[IVA])))
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure 'Total Amortizado' = SUM(contrato_contratista[Anticipos]) + SUM(contrato_contratista[Fondo Garantia]) + SUM(contrato_contratista[ISR]) + SUM(contrato_contratista[Dispersion de Nomina])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	column obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: obra
+
+		annotation SummarizationSetBy = Automatic
+
+	column numpro
+		dataType: string
+		summarizeBy: none
+		sourceColumn: numpro
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_convenio
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: id_convenio
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_inicio_contrato
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: fecha_inicio_contrato
+
+		variation Variación
+			isDefault
+			relationship: 9729f8e6-1572-48d1-bcb8-4eac05ccd6a0
+			defaultHierarchy: LocalDateTable_03ee12b3-a977-4527-9653-b611e7a4a020.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column fecha_termino_contrato
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: fecha_termino_contrato
+
+		variation Variación
+			isDefault
+			relationship: 6c041d1e-75e8-4e12-ba87-5b38368c994d
+			defaultHierarchy: LocalDateTable_eb5287d7-99b3-493e-bfd3-5e6487ce9280.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FECHA_FIRMA_CONTRATO
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: FECHA_FIRMA_CONTRATO
+
+		variation Variación
+			isDefault
+			relationship: 1ea682af-ca46-4c4f-8b0f-b281f838d0c7
+			defaultHierarchy: LocalDateTable_313019c3-19a9-4d46-9529-8699ce273c03.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MONTO_ADITIVAS
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: MONTO_ADITIVAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column MONTO_DEDUCTIVAS
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: MONTO_DEDUCTIVAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column importe_contrato_moneda
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: importe_contrato_moneda
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto_Aditivas_moneda
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: monto_Aditivas_moneda
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto_deductivas_moneda
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: monto_deductivas_moneda
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id_cc =
+			
+			contrato_contratista[numpro] & contrato_contratista[obra] & contrato_contratista[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id =
+			
+			contrato_contratista[numpro] & contrato_contratista[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Convenio ID' = contrato_contratista[id_convenio] & contrato_contratista[prov_id_cc]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anticipos =
+			
+			VAR current_id = contrato_contratista[Convenio ID]
+			VAR anticipo = CALCULATE(SUM(amortizacion_contratista[LIMITE]), FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = current_id && amortizacion_contratista[AMORTIZACION_ID] = 1))
+			RETURN
+			IF(ISBLANK(anticipo), 0, anticipo)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column MONTO_ANTICIPO
+		dataType: string
+		summarizeBy: none
+		sourceColumn: MONTO_ANTICIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MONTO_ESTIMADO
+		dataType: string
+		summarizeBy: none
+		sourceColumn: MONTO_ESTIMADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALDO_AMORTIZAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SALDO_AMORTIZAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descuentos =
+			
+			VAR curr_id = contrato_contratista[Convenio ID]
+			VAR descuentos_totales =
+			    CALCULATE(SUM(estimaciones_contratistas_tot[descuento]), FILTER(estimaciones_contratistas_tot, estimaciones_contratistas_tot[Convenio ID] = curr_id))
+			RETURN
+			descuentos_totales
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMPORTE_CONTRATO
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: IMPORTE_CONTRATO
+
+		annotation SummarizationSetBy = Automatic
+
+	column PORC_IVA_CONTRATO
+		dataType: int64
+		summarizeBy: sum
+		sourceColumn: PORC_IVA_CONTRATO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IVA = contrato_contratista[PORC_IVA_CONTRATO]/100
+		dataType: double
+		formatString: 0\ %;-0\ %;0\ %
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fondo Garantia' =
+			
+			VAR current_id = contrato_contratista[Convenio ID]
+			VAR fondo_garantia = CALCULATE(SUM(amortizacion_contratista[LIMITE]), FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = current_id && amortizacion_contratista[AMORTIZACION_ID] = 2))
+			RETURN
+			IF(ISBLANK(fondo_garantia), 0, fondo_garantia)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dispersion de Nomina' =
+			
+			VAR current_id = contrato_contratista[Convenio ID]
+			VAR disp_nomina = CALCULATE(SUM(amortizacion_contratista[LIMITE]), FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = current_id && amortizacion_contratista[AMORTIZACION_ID] = 3))
+			RETURN
+			IF(ISBLANK(disp_nomina), 0, disp_nomina)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISR =
+			
+			VAR current_id = contrato_contratista[Convenio ID]
+			VAR isr = CALCULATE(SUM(amortizacion_contratista[LIMITE]), FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = current_id && amortizacion_contratista[AMORTIZACION_ID] = 4))
+			RETURN
+			IF(ISBLANK(isr), 0, isr)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facturado = ```
+			
+			VAR current_id = contrato_contratista[Convenio ID]
+			VAR suma_facturado = 
+			    CALCULATE(SUM(estimaciones_contratistas_tot[Facturado]), FILTER(estimaciones_contratistas_tot, estimaciones_contratistas_tot[Convenio ID] = current_id))
+			RETURN
+			IF(ISBLANK(suma_facturado), 0, suma_facturado)
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pagado = ```
+			
+			VAR current_id = contrato_contratista[Convenio ID]
+			VAR suma_pagado = 
+			    CALCULATE(SUM(estimaciones_contratistas_tot[Pagado]), FILTER(estimaciones_contratistas_tot, estimaciones_contratistas_tot[Convenio ID] = current_id))
+			RETURN
+			IF(ISBLANK(suma_pagado), 0, ABS(suma_pagado))
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Anticipo de Obra' =
+			
+			VAR convenio = contrato_contratista[Convenio ID]
+			VAR porcentaje =
+			    CALCULATE(
+			        SUM(amortizacion_contratista[Porc Anticipo Obra]),
+			        FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = convenio))
+			RETURN
+			IF(ISBLANK(porcentaje), 0, porcentaje)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Dispersión Nómina' =
+			
+			VAR convenio = contrato_contratista[Convenio ID]
+			VAR porcentaje =
+			    CALCULATE(
+			        SUM(amortizacion_contratista[Porcentaje Dispercón Nómina]),
+			        FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = convenio))
+			RETURN
+			IF(ISBLANK(porcentaje), 0, porcentaje)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Fondo Garantía' =
+			
+			VAR convenio = contrato_contratista[Convenio ID]
+			VAR porcentaje =
+			    CALCULATE(
+			        SUM(amortizacion_contratista[Porc Fondo Garantia]),
+			        FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = convenio))
+			RETURN
+			IF(ISBLANK(porcentaje), 0, porcentaje)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% ISR' =
+			
+			VAR convenio = contrato_contratista[Convenio ID]
+			VAR porcentaje =
+			    CALCULATE(
+			        SUM(amortizacion_contratista[Porcentaje ISR]),
+			        FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = convenio))
+			RETURN
+			IF(ISBLANK(porcentaje), 0, porcentaje)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Garantía IMSS' =
+			
+			VAR convenio = contrato_contratista[Convenio ID]
+			VAR porcentaje =
+			    CALCULATE(
+			        SUM(amortizacion_contratista[Porc Garantía IMSS]),
+			        FILTER(amortizacion_contratista, amortizacion_contratista[Convenio ID] = convenio))
+			RETURN
+			IF(ISBLANK(porcentaje), 0, porcentaje)
+		formatString: 0.00%;-0.00%;0.00%
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition contrato_contratista = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    contrato_contratista_Sheet = Origen{[Item="contrato_contratista",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(contrato_contratista_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"obra", type text}, {"numpro", type text}, {"id_convenio", Int64.Type}, {"fecha_inicio_contrato", type date}, {"fecha_termino_contrato", type date}, {"FECHA_FIRMA_CONTRATO", type date}, {"MONTO_ADITIVAS", type number}, {"MONTO_DEDUCTIVAS", type number}, {"importe_contrato_moneda", type number}, {"monto_Aditivas_moneda", type number}, {"monto_deductivas_moneda", type number}, {"source", type text}, {"id_cc", type text}, {"IMPORTE_CONTRATO", type number}, {"PORC_IVA_CONTRATO", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

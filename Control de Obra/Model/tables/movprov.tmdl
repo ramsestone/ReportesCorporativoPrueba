@@ -1,0 +1,170 @@
+﻿table movprov
+
+	column numpro
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: numpro
+
+		annotation SummarizationSetBy = Automatic
+
+	column factura
+		dataType: string
+		summarizeBy: none
+		sourceColumn: factura
+
+		annotation SummarizationSetBy = Automatic
+
+	column tm
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: tm
+
+		annotation SummarizationSetBy = Automatic
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column referenciaoc
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: referenciaoc
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: monto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tipocambio
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: tipocambio
+
+		annotation SummarizationSetBy = Automatic
+
+	column iva
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: iva
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column poliza
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: poliza
+
+		annotation SummarizationSetBy = Automatic
+
+	column total
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Facturado =
+			
+			IF(movprov[tm] IN {1,2,3,4,5,7,8,10,11,12,14,21,23,24,25}, movprov[total])
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pagado =
+			
+			IF(movprov[tm] IN {51,52,53,54,55,56,57,58,59,62}, movprov[total])
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_orden_compra = ```
+			
+			VAR FacturaActual = movprov[factura]
+			VAR RefValida =
+			    CALCULATE(
+			        MAX(movprov[referenciaoc]),
+			        FILTER(
+			            movprov,
+			            movprov[factura] = FacturaActual &&
+			            movprov[referenciaoc] <> 0
+			        )
+			    )
+			VAR RefFinal = 
+			    IF(
+			        RefValida <> BLANK(),
+			        RefValida,
+			        movprov[referenciaoc]
+			    )
+			VAR id_orden_compra = RefFinal & movprov[cc] & movprov[source]
+			RETURN
+			IF(RefFinal = 0, BLANK(), id_orden_compra)
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition movprov = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    movprov_Sheet = Origen{[Item="movprov",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(movprov_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"numpro", Int64.Type}, {"factura", type text}, {"tm", Int64.Type}, {"cc", type text}, {"referenciaoc", Int64.Type}, {"monto", type number}, {"tipocambio", Int64.Type}, {"iva", type number}, {"poliza", Int64.Type}, {"total", type number}, {"source", type text}, {"id_cc", type text}, {"prov_id", type text}, {"prov_id_cc", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

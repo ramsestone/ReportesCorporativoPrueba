@@ -1,0 +1,80 @@
+﻿table proveedores
+
+	column numpro
+		dataType: string
+		summarizeBy: none
+		sourceColumn: numpro
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nombre
+
+		annotation SummarizationSetBy = Automatic
+
+	column direccion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: direccion
+
+		annotation SummarizationSetBy = Automatic
+
+	column telefono1
+		dataType: string
+		summarizeBy: none
+		sourceColumn: telefono1
+
+		annotation SummarizationSetBy = Automatic
+
+	column telefono2
+		dataType: string
+		summarizeBy: none
+		sourceColumn: telefono2
+
+		annotation SummarizationSetBy = Automatic
+
+	column fax
+		dataType: string
+		summarizeBy: none
+		sourceColumn: fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id = ```
+			proveedores[numpro] & proveedores[source] 
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Proveedor' =
+			-- Numpro + Nombre
+			proveedores[numpro] & " " & proveedores[nombre]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition proveedores = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    proveedores_Sheet = Origen{[Item="proveedores",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(proveedores_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"numpro", type text}, {"nombre", type text}, {"direccion", type text}, {"telefono1", type text}, {"telefono2", type text}, {"fax", type any}, {"source", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

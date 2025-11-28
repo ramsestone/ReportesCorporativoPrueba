@@ -1,0 +1,600 @@
+{
+  "Commands": [
+    {
+      "SemanticQueryDataShapeCommand": {
+        "Query": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "contrato_contratista",
+              "Type": 0
+            },
+            {
+              "Name": "p",
+              "Entity": "proveedores",
+              "Type": 0
+            },
+            {
+              "Name": "c1",
+              "Entity": "contrato_contratista_det",
+              "Type": 0
+            },
+            {
+              "Name": "a",
+              "Entity": "amortizacion_contratista",
+              "Type": 0
+            },
+            {
+              "Name": "a1",
+              "Entity": "amortizacion_contratista_det",
+              "Type": 0
+            },
+            {
+              "Name": "e",
+              "Entity": "estimaciones_contratistas_tot",
+              "Type": 0
+            },
+            {
+              "Name": "e1",
+              "Entity": "empresas",
+              "Type": 0
+            }
+          ],
+          "Select": [
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "FECHA_FIRMA_CONTRATO"
+              },
+              "Name": "contrato_contratista.FECHA_FIRMA_CONTRATO",
+              "NativeReferenceName": "Firma Contrato"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "id_convenio"
+              },
+              "Name": "Sum(contrato_contratista.id_convenio)",
+              "NativeReferenceName": "Convenio"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "fecha_inicio_contrato"
+              },
+              "Name": "contrato_contratista.fecha_inicio_contrato",
+              "NativeReferenceName": "Inicio Contrato"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "fecha_termino_contrato"
+              },
+              "Name": "contrato_contratista.fecha_termino_contrato",
+              "NativeReferenceName": "Termino Contrato"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "p"
+                  }
+                },
+                "Property": "nombre"
+              },
+              "Name": "proveedores.nombre",
+              "NativeReferenceName": "Nombre Contratista"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "p"
+                  }
+                },
+                "Property": "numpro"
+              },
+              "Name": "proveedores.numpro",
+              "NativeReferenceName": "Numero Contratista"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "IVA"
+              },
+              "Name": "Sum(contrato_contratista.IVA)",
+              "NativeReferenceName": "IVA"
+            },
+            {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "Importe Contrato Total"
+              },
+              "Name": "contrato_contratista.Importe Contrato Total",
+              "NativeReferenceName": "Importe Contrato"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "c"
+                      }
+                    },
+                    "Property": "Facturado"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(contrato_contratista.Facturado)",
+              "NativeReferenceName": "Facturado"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "c"
+                      }
+                    },
+                    "Property": "Pagado"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "contrato_contratista.Pagado",
+              "NativeReferenceName": "Pagado"
+            },
+            {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c1"
+                  }
+                },
+                "Property": "Importe Contrato Subtotal"
+              },
+              "Name": "contrato_contratista_det.Importe Contrato Subtotal",
+              "NativeReferenceName": "Contrato Subtotal"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a"
+                      }
+                    },
+                    "Property": "Fondo Garantía Limite"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista.Fondo Garantía Limite)",
+              "NativeReferenceName": "Fondo Garantía"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a"
+                      }
+                    },
+                    "Property": "Dispersion Nomina"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista.Dispercion Nomina)",
+              "NativeReferenceName": "Dispersión Nómina"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a"
+                      }
+                    },
+                    "Property": "ISR"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista.ISR)",
+              "NativeReferenceName": "ISR"
+            },
+            {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e"
+                  }
+                },
+                "Property": "sum_amortizado"
+              },
+              "Name": "estimaciones_contratistas_tot.sum_amortizado",
+              "NativeReferenceName": "Total Amortizado"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "c1"
+                      }
+                    },
+                    "Property": "Aditivas Clumna"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(contrato_contratista_det.Aditivas Column)",
+              "NativeReferenceName": "Aditivas"
+            },
+            {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "a1"
+                  }
+                },
+                "Property": "Total de Anticipo"
+              },
+              "Name": "amortizacion_contratista_det.Total de Anticipo",
+              "NativeReferenceName": "Total de Anticipo"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "c1"
+                      }
+                    },
+                    "Property": "Deductivas Column"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(contrato_contratista_det.Deductivas Column)",
+              "NativeReferenceName": "Deductivas"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a1"
+                      }
+                    },
+                    "Property": "DISP_NOM_COL"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista_det.DISP_NOM_COL)",
+              "NativeReferenceName": "Amortizado Dispersión Nómina"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a1"
+                      }
+                    },
+                    "Property": "FONGAR_DET_COL"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista_det.FONGAR_DET_COL)",
+              "NativeReferenceName": "Amortizado Fondo Garantía"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a1"
+                      }
+                    },
+                    "Property": "ISR_DET_COL"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista_det.ISR_DET_COL)",
+              "NativeReferenceName": "Amortizado ISR1"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a1"
+                      }
+                    },
+                    "Property": "ANTICIPO_DET_COL"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista_det.ANTICIPO_DET_COL)",
+              "NativeReferenceName": "Amortizado Anticipo de Obra1"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "c1"
+                      }
+                    },
+                    "Property": "Importe Contrato Base Columna"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(contrato_contratista_det.Importe Contrato Base Columna)",
+              "NativeReferenceName": "Importe Contrato Base"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "% Anticipo de Obra"
+              },
+              "Name": "Sum(contrato_contratista.% Anticipo de Obra)",
+              "NativeReferenceName": "% Anticipo Obra"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "% Dispersión Nómina"
+              },
+              "Name": "Sum(contrato_contratista.% Dispersión Nómina)",
+              "NativeReferenceName": "% Dispersión Nómina"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "% Fondo Garantía"
+              },
+              "Name": "Sum(contrato_contratista.% Fondo Garantía)",
+              "NativeReferenceName": "% Fondo Garantía"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "c"
+                  }
+                },
+                "Property": "% ISR"
+              },
+              "Name": "Sum(contrato_contratista.% ISR)",
+              "NativeReferenceName": "% ISR"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a"
+                      }
+                    },
+                    "Property": "Anticipo Obra"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista.Anticipo Obra)",
+              "NativeReferenceName": "Anticipo Obra"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a"
+                      }
+                    },
+                    "Property": "Garantías IMSS"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista.Anticipo IMSS)",
+              "NativeReferenceName": "Garantía IMSS"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "c"
+                      }
+                    },
+                    "Property": "% Garantía IMSS"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(contrato_contratista.% Garantía IMSS)",
+              "NativeReferenceName": "% Garantía IMSS"
+            },
+            {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "a1"
+                      }
+                    },
+                    "Property": "GARANTIA_IMSS__COL"
+                  }
+                },
+                "Function": 0
+              },
+              "Name": "Sum(amortizacion_contratista_det.GARANTIA_IMSS__COL)",
+              "NativeReferenceName": "Amortizado Garantía IMSS"
+            },
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e1"
+                  }
+                },
+                "Property": "nombre_empresa"
+              },
+              "Name": "empresas.nombre_empresa",
+              "NativeReferenceName": "Empresa"
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "c"
+                              }
+                            },
+                            "Property": "id_convenio"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "Binding": {
+          "Primary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19,
+                  20,
+                  21,
+                  22,
+                  23,
+                  24,
+                  25,
+                  26,
+                  27,
+                  28,
+                  29,
+                  30,
+                  31
+                ],
+                "Subtotal": 1
+              }
+            ]
+          },
+          "DataReduction": {
+            "DataVolume": 3,
+            "Primary": {
+              "Window": {
+                "Count": 500
+              }
+            }
+          },
+          "Version": 1
+        },
+        "ExecutionMetricsKind": 1
+      }
+    }
+  ]
+}

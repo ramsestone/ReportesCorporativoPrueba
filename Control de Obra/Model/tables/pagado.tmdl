@@ -1,0 +1,313 @@
+﻿table pagado
+
+	measure Total_total_pagado =
+			
+			SUMX ( pagado, VALUE ( pagado[total] ) )
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_SI_Pagadoo =
+			
+			[Total_SI_pagado] + [Total_total_pagado]
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pendiente por Pagar' =
+			
+			CALCULATE(SUM(presupuesto_compras[presupuesto_compras_real]) - SUM(pagado[total]) + [Total_SI_Pagadoo])
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avance Financiero' =
+			
+			var decimal = CALCULATE((SUM(pagado[total]) + [Total_SI_pagadoo])/SUM(presupuesto_compras[presupuesto_compras_real]))
+			RETURN
+			decimal / 100
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+
+	column numpro
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: numpro
+
+		annotation SummarizationSetBy = Automatic
+
+	column factura
+		dataType: string
+		summarizeBy: none
+		sourceColumn: factura
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: fecha
+
+		variation Variación
+			isDefault
+			relationship: 9fa30a2a-5d11-4cde-b247-7f9e5955df84
+			defaultHierarchy: LocalDateTable_c8bbc86b-736f-4e83-a197-1ba4868d27e8.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column tm
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: tm
+
+		annotation SummarizationSetBy = Automatic
+
+	column fechavenc
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: fechavenc
+
+		variation Variación
+			isDefault
+			relationship: a9efc34e-bfa7-435b-ba9e-0894789c7f5d
+			defaultHierarchy: LocalDateTable_d2582c23-e930-4e4d-8d79-2548fc2f67d0.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column concepto
+		dataType: string
+		summarizeBy: none
+		sourceColumn: concepto
+
+		annotation SummarizationSetBy = Automatic
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column referenciaoc
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: referenciaoc
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: monto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tipocambio
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: tipocambio
+
+		annotation SummarizationSetBy = Automatic
+
+	column iva
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: iva
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column poliza
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: poliza
+
+		annotation SummarizationSetBy = Automatic
+
+	column tp
+		dataType: string
+		summarizeBy: none
+		sourceColumn: tp
+
+		annotation SummarizationSetBy = Automatic
+
+	column es_factura
+		dataType: string
+		summarizeBy: none
+		sourceColumn: es_factura
+
+		annotation SummarizationSetBy = Automatic
+
+	column autorizapago
+		dataType: string
+		summarizeBy: none
+		sourceColumn: autorizapago
+
+		annotation SummarizationSetBy = Automatic
+
+	column total
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column folio_gxc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: folio_gxc
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_factura
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_factura
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_proveedor
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_proveedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column monto_iva
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: monto_iva
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column monto_facturado_snIva
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: monto_facturado_snIva
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column monto_facturado_conIva
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: monto_facturado_conIva
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column porcentaje_pagado
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: porcentaje_pagado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column porcentaje_pagadob
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: porcentaje_pagadob
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column porcentaje_pagado_iva
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: porcentaje_pagado_iva
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column porcentaje_iva_pagado
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: porcentaje_iva_pagado
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_total_pagSI
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: sub_total_pagSI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tipo de Pago' =
+			
+			IF(
+			    pagado[tm] = 57,
+			    "EFECTIVO",
+			    "TRANSFERENCIA"
+			)
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition pagado = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\proforma_data.xlsx"), null, true),
+				    pagado_Sheet = Origen{[Item="pagado",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(pagado_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"numpro", Int64.Type}, {"factura", type text}, {"fecha", type date}, {"tm", Int64.Type}, {"fechavenc", type date}, {"concepto", type text}, {"cc", type text}, {"referenciaoc", Int64.Type}, {"monto", type number}, {"tipocambio", Int64.Type}, {"iva", Int64.Type}, {"year", Int64.Type}, {"mes", Int64.Type}, {"poliza", Int64.Type}, {"tp", type text}, {"es_factura", type text}, {"autorizapago", type text}, {"total", type number}, {"folio_gxc", type any}, {"source", type text}, {"id_cc", type text}, {"id_factura", type text}, {"id_proveedor", type text}, {"monto_iva", type number}, {"monto_facturado_snIva", type number}, {"monto_facturado_conIva", type number}, {"porcentaje_pagado", type number}, {"porcentaje_pagadob", type number}, {"porcentaje_pagado_iva", type number}, {"porcentaje_iva_pagado", Int64.Type}, {"sub_total_pagSI", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

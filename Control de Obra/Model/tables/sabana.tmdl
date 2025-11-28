@@ -1,0 +1,111 @@
+﻿table sabana
+
+	measure 'No Departamentos' = CALCULATE(COUNT(sabana[NombreUbicacion]))
+		formatString: 0
+
+	column NombreUbicacion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: NombreUbicacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdDesarrollo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IdDesarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreDesarrollo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: NombreDesarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdCompania
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: IdCompania
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdUbicacion
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: IdUbicacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreCompania
+		dataType: string
+		summarizeBy: none
+		sourceColumn: NombreCompania
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Desarrollo.IdCompania'
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: Desarrollo.IdCompania
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdExpediente
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: IdExpediente
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClientesEK9
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: ClientesEK9
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdCliente
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: IdCliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdClienteEK9_EK10
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: IdClienteEK9_EK10
+
+		annotation SummarizationSetBy = Automatic
+
+	column source = LOOKUPVALUE(clientes[source], clientes[id_cliente_ek10], sabana[IdCliente])
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sabana = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\comercializacion_data.xlsx"), null, true),
+				    sabana_Sheet = Origen{[Item="sabana",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(sabana_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IdUbicacion", Int64.Type}, {"NombreUbicacion", type text}, {"IdDesarrollo", Int64.Type}, {"IdPrototipo", Int64.Type}, {"Superficie", type number}, {"FechaEscrituracion", Int64.Type}, {"SuperficieBalcon", type number}, {"SuperficieTerraza", type text}, {"DisponibilidadUbicacion", type text}, {"NombreDesarrollo", type text}, {"IdCompania", Int64.Type}, {"NombreCompania", type text}, {"IdVenta", Int64.Type}, {"IdExpediente", Int64.Type}, {"NombrePrototipo", type text}, {"Recamaras", Int64.Type}, {"Banios", type number}, {"IdCliente", Int64.Type}, {"NombreDesarrollo_y", type text}, {"Desarrollo.IdCompania", Int64.Type}, {"NombreCompania_y", type text}, {"Modificado", type datetime}, {"IdAgente", Int64.Type}, {"NombreAgente", type text}, {"ApellidosAgente", type text}, {"EstatusVenta", type text}, {"Importe Venta", type number}, {"ClientesEK9", Int64.Type}, {"NombreCompletoAgente", type text}, {"IdClienteEK9_EK10", Int64.Type}, {"IdEtapa", Int64.Type}, {"Etapa", type text}, {"FechaInicio", type number}, {"FechaCierre", type any}, {"Nombre", type text}, {"ApellidoPaterno", type text}, {"ApellidoMaterno", type text}, {"NombreCompletoCliente", type text}, {"FechaNacimiento", type date}, {"RFC", type text}, {"CURP", type text}, {"CP", Int64.Type}, {"Colonia", type text}, {"DelegacionEstadoPais", type text}, {"EstadoCivil", type text}, {"Ingresos", type text}, {"EmailPrincipal", type text}, {"TelefonoPrincipal", Int64.Type}, {"OrigenCliente", type text}, {"Gastos Notariales", Int64.Type}, {"IdCreditoTipo", Int64.Type}, {"Financiamiento", type text}, {"Institucion", type text}, {"MontoCredito", type text}, {"MontoCreditoSumado", type number}, {"Caracteristicas", type text}, {"ImportesOpcionales", type number}, {"TotalCaracteristicas", type number}, {"Version", Int64.Type}, {"Notario", type text}, {"Referencia Bancaria", type text}, {"Gastos Notarios", type number}, {"Gastos Notariales2", type any}, {"Monto Credito2", type number}, {"Financiamiento2", type text}, {"Gastos Not Urba", Int64.Type}, {"NumeroEscrituracion", type text}}),
+				    #"Otras columnas quitadas" = Table.SelectColumns(#"Tipo cambiado",{"IdUbicacion", "NombreUbicacion", "IdDesarrollo", "NombreDesarrollo", "IdCompania", "NombreCompania", "IdExpediente", "IdCliente", "Desarrollo.IdCompania", "ClientesEK9", "IdClienteEK9_EK10"})
+				in
+				    #"Otras columnas quitadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

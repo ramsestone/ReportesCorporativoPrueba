@@ -1,0 +1,42 @@
+{
+  "name": "eca05ce0a204a1cec28e",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 46.315789473684212,
+        "y": 274.36387827460476,
+        "z": 43000,
+        "width": 73.15789473684211,
+        "height": 31.578947368421055,
+        "tabOrder": 37000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Facturar a :",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

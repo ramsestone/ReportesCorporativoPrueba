@@ -1,0 +1,64 @@
+{
+  "name": "798a70087ebe22e2e509",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "height": 75.238095238095241,
+        "width": 82.857142857142847,
+        "x": 0,
+        "y": 0,
+        "z": 15000,
+        "tabOrder": 0
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "SUBTOTAL :",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "I.V.A 00% :",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "TOTAL : ",
+                    "textStyle": {
+                      "fontSize": "8pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "parentGroupName": "216a1ce524aa02c3aa88"
+}

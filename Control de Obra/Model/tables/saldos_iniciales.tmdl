@@ -1,0 +1,150 @@
+﻿table saldos_iniciales
+
+	measure Total_SI_pagado =
+			
+			SUMX ( saldos_iniciales, VALUE ( saldos_iniciales[sub_total] ) )
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cc
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column numero
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: fecha
+
+		variation Variación
+			isDefault
+			relationship: 868f64d1-9b9b-442b-8149-62b180140b3a
+			defaultHierarchy: LocalDateTable_297bbf4c-01d0-4b0a-b59e-e8e0cdcbc2ff.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column comprador
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: comprador
+
+		annotation SummarizationSetBy = Automatic
+
+	column proveedor
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: proveedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_cambio
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: tipo_cambio
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_total
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: sub_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column iva
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: iva
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column comentarios
+		dataType: string
+		summarizeBy: none
+		sourceColumn: comentarios
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_sin_tc
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: total_sin_tc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sin_tipo_cambio
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: sin_tipo_cambio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_orden
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_orden
+
+		annotation SummarizationSetBy = Automatic
+
+	column total
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: total
+
+		annotation SummarizationSetBy = Automatic
+
+	partition saldos_iniciales = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\proforma_data.xlsx"), null, true),
+				    saldos_iniciales_Sheet = Origen{[Item="saldos_iniciales",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(saldos_iniciales_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"cc", Int64.Type}, {"numero", Int64.Type}, {"fecha", type date}, {"comprador", Int64.Type}, {"proveedor", Int64.Type}, {"tipo_cambio", Int64.Type}, {"sub_total", type number}, {"iva", type number}, {"total", type number}, {"comentarios", type text}, {"source", type text}, {"total_sin_tc", type number}, {"sin_tipo_cambio", type number}, {"id_cc", type text}, {"id_orden", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

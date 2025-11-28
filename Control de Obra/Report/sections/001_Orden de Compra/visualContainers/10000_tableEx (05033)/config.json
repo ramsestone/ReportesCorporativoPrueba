@@ -1,0 +1,245 @@
+{
+  "name": "0503330005474748392e",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 408.94736842105266,
+        "y": 280.5263157894737,
+        "z": 12000,
+        "width": 406.84210526315792,
+        "height": 93.15789473684211,
+        "tabOrder": 10000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "tableEx",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "Forma de Pago.Días"
+        },
+        {
+          "queryRef": "Forma de Pago.Movimiento"
+        },
+        {
+          "queryRef": "Forma de Pago.Porcentaje"
+        },
+        {
+          "queryRef": "Sum(orden_compra_det.importe)"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "f",
+          "Entity": "Forma de Pago",
+          "Type": 0
+        },
+        {
+          "Name": "o",
+          "Entity": "orden_compra_det",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "f"
+              }
+            },
+            "Property": "Días"
+          },
+          "Name": "Forma de Pago.Días",
+          "NativeReferenceName": "Días"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "f"
+              }
+            },
+            "Property": "Movimiento"
+          },
+          "Name": "Forma de Pago.Movimiento",
+          "NativeReferenceName": "Movimiento"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "f"
+              }
+            },
+            "Property": "Porcentaje"
+          },
+          "Name": "Forma de Pago.Porcentaje",
+          "NativeReferenceName": "Porcentaje"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "o"
+                  }
+                },
+                "Property": "importe"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(orden_compra_det.importe)",
+          "NativeReferenceName": "Importe"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "f"
+                }
+              },
+              "Property": "Porcentaje"
+            }
+          }
+        }
+      ]
+    },
+    "columnProperties": {
+      "Sum(orden_compra_det.importe)": {
+        "displayName": "Importe",
+        "formatString": "\\$#,0.00;-\\$#,0.00;\\$#,0.00"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "204.5033721058175D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Forma de Pago.Movimiento"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontalWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

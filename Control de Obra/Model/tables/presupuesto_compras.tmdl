@@ -1,0 +1,102 @@
+﻿table presupuesto_compras
+
+	column id_obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_obra
+
+		annotation SummarizationSetBy = Automatic
+
+	column importe
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: importe
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aditiva_imp
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: aditiva_imp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column deduc_imp
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: deduc_imp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column presupuesto_compras
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: presupuesto_compras
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cancelaciones
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: cancelaciones
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column presupuesto_compras_real
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: presupuesto_compras_real
+
+		annotation SummarizationSetBy = Automatic
+
+	column pagado
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: pagado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column saldos_iniciales
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: saldos_iniciales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pagado_saldos_iniciales
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: pagado_saldos_iniciales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition presupuesto_compras = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\proforma_data.xlsx"), null, true),
+				    presupuesto_compras_Sheet = Origen{[Item="presupuesto_compras",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(presupuesto_compras_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"id_obra", type text}, {"importe", type number}, {"aditiva_imp", type number}, {"deduc_imp", type number}, {"presupuesto_compras", type number}, {"cancelaciones", type number}, {"presupuesto_compras_real", type number}, {"pagado", type number}, {"saldos_iniciales", type number}, {"pagado_saldos_iniciales", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

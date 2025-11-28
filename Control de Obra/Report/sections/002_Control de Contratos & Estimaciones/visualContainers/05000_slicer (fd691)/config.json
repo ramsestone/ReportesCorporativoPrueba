@@ -1,0 +1,98 @@
+{
+  "name": "fd691bb61c80cc38de1c",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 1805.7142857142858,
+        "y": 30.000000000000004,
+        "z": 5000,
+        "width": 365.71428571428572,
+        "height": 71.428571428571431,
+        "tabOrder": 5000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "slicer",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "proveedores.Nombre Proovedor",
+          "active": true
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "p",
+          "Entity": "proveedores",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "p"
+              }
+            },
+            "Property": "Nombre Proveedor"
+          },
+          "Name": "proveedores.Nombre Proovedor",
+          "NativeReferenceName": "Contratista"
+        }
+      ]
+    },
+    "columnProperties": {
+      "proveedores.Nombre Proovedor": {
+        "displayName": "Contratista"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+﻿table almacen_cc
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column almacen
+		dataType: string
+		summarizeBy: none
+		sourceColumn: almacen
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc = almacen_cc[cc] & almacen_cc[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_almacen = almacen_cc[almacen] & almacen_cc[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition almacen_cc = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    almacen_cc_Sheet = Origen{[Item="almacen_cc",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(almacen_cc_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"cc", type text}, {"almacen", type text}, {"source", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

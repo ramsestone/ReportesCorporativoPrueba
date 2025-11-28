@@ -1,0 +1,247 @@
+﻿table amortizacion_contratista_det
+
+	measure ANTICIPO_DET =
+			
+			VAR anticipo =
+			CALCULATE(
+			    SUM(amortizacion_contratista_det[AMORTIZACION_ASIGNADA]),
+			    FILTER(amortizacion_contratista_det,
+			        amortizacion_contratista_det[AMORTIZACION_ID] = 1
+			        ))
+			RETURN
+			anticipo
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure FONGAR_DET = ```
+			
+			// ELIMINAR MEDIDAS "_DET" UNA VEZ GARANTIZADO QUE NO SE USAN 
+			// SE PREFIERE COLUMNAS SOBRE MEDIDA PARA PODER TENER MEJOR CONTROL SOBRE LOS VALORES EN BLANCO
+			CALCULATE(
+			    SUM(amortizacion_contratista_det[AMORTIZACION_ASIGNADA]), 
+			    FILTER(amortizacion_contratista_det, amortizacion_contratista_det[AMORTIZACION_ID] = 2))
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure DISPNOM_DET = ```
+			--Dispersión de Nómina 
+			// ELIMINAR MEDIDAS "_DET" UNA VEZ GARANTIZADO QUE NO SE USAN 
+			// SE PREFIERE COLUMNAS SOBRE MEDIDA PARA PODER TENER MEJOR CONTROL SOBRE LOS VALORES EN BLANCO
+			CALCULATE(
+			    SUM(amortizacion_contratista_det[AMORTIZACION_ASIGNADA]),
+			    FILTER(amortizacion_contratista_det,
+			        amortizacion_contratista_det[AMORTIZACION_ID] = 3
+			        ))
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure ISR_DET = ```
+			
+			// ELIMINAR MEDIDAS "_DET" UNA VEZ GARANTIZADO QUE NO SE USAN 
+			// SE PREFIERE COLUMNAS SOBRE MEDIDA PARA PODER TENER MEJOR CONTROL SOBRE LOS VALORES EN BLANCO
+			CALCULATE(
+			    SUM(amortizacion_contratista_det[AMORTIZACION_ASIGNADA]),
+			    FILTER(amortizacion_contratista_det,
+			        amortizacion_contratista_det[AMORTIZACION_ID] = 4
+			        ))
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure 'Total de Anticipo' =
+			
+			[ANTICIPO_DET] + [DISPNOM_DET]
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+
+	measure GARANTIA_IMSS_DET =
+			
+			VAR anticipo =
+			CALCULATE(
+			    SUM(amortizacion_contratista_det[AMORTIZACION_ASIGNADA]),
+			    FILTER(amortizacion_contratista_det,
+			        amortizacion_contratista_det[CLAVE_AMORT] = 1 && amortizacion_contratista_det[AMORTIZACION_ID] = 3
+			        ))
+			RETURN
+			anticipo
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OBRA
+		dataType: string
+		summarizeBy: none
+		sourceColumn: OBRA
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMORTIZACION_ID
+		dataType: int64
+		formatString: 0
+		summarizeBy: count
+		sourceColumn: AMORTIZACION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NUMPRO
+		dataType: string
+		summarizeBy: none
+		sourceColumn: NUMPRO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLAVE_AMORT
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: CLAVE_AMORT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMACION_ID
+		dataType: int64
+		formatString: 0
+		summarizeBy: count
+		sourceColumn: ESTIMACION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMORTIZACION_ASIGNADA
+		dataType: double
+		formatString: 0.00
+		summarizeBy: sum
+		sourceColumn: AMORTIZACION_ASIGNADA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANTICIPO
+		dataType: double
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: ANTICIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEVOLUCION
+		dataType: double
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: DEVOLUCION
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_convenio
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_convenio
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: prov_id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Convenio ID' = amortizacion_contratista_det[id_convenio] & amortizacion_contratista_det[prov_id_cc]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amortización Descripción' =
+			
+			VAR descripcion =
+			    LOOKUPVALUE(
+			    amortizacion[DESCRIPCION],
+			    amortizacion[AMORTIZACION_ID], amortizacion_contratista_det[CLAVE_AMORT],
+			    amortizacion[source], amortizacion_contratista_det[source])
+			RETURN
+			descripcion
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column AMORTIZADO
+		dataType: double
+		formatString: 0.00
+		summarizeBy: sum
+		sourceColumn: AMORTIZADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISP_NOM_COL =
+			
+			--  && amortizacion_contratista_det[CLAVE_AMORT] IN {3,2,1}
+			IF(amortizacion_contratista_det[AMORTIZACION_ID] = 3, amortizacion_contratista_det[AMORTIZACION_ASIGNADA], 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column FONGAR_DET_COL =
+			
+			-- && amortizacion_contratista_det[CLAVE_AMORT] = 2
+			IF(amortizacion_contratista_det[AMORTIZACION_ID] = 2, amortizacion_contratista_det[AMORTIZACION_ASIGNADA], 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISR_DET_COL =
+			
+			IF(amortizacion_contratista_det[AMORTIZACION_ID] = 4, amortizacion_contratista_det[AMORTIZACION_ASIGNADA], 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANTICIPO_DET_COL =
+			
+			-- && amortizacion_contratista_det[CLAVE_AMORT] = 1
+			IF(amortizacion_contratista_det[AMORTIZACION_ID] = 1, amortizacion_contratista_det[AMORTIZACION_ASIGNADA], 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column GARANTIA_IMSS__COL =
+			
+			IF(amortizacion_contratista_det[AMORTIZACION_ID] = 3 && amortizacion_contratista_det[CLAVE_AMORT] = 1, amortizacion_contratista_det[AMORTIZACION_ASIGNADA], 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition amortizacion_contratista_det = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    amortizacion_contratista_det_Sheet = Origen{[Item="amortizacion_contratista_det",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(amortizacion_contratista_det_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"OBRA", type text}, {"AMORTIZACION_ID", Int64.Type}, {"NUMPRO", type text}, {"CLAVE_AMORT", Int64.Type}, {"ESTIMACION_ID", Int64.Type}, {"AMORTIZADO", type number}, {"AMORTIZACION_ASIGNADA", type number}, {"ANTICIPO", type number}, {"DEVOLUCION", type number}, {"id_convenio", type text}, {"source", type text}, {"id_cc", type text}, {"prov_id", type text}, {"prov_id_cc", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

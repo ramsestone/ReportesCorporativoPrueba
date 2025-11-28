@@ -1,0 +1,933 @@
+{
+  "Commands": [
+    {
+      "SemanticQueryDataShapeCommand": {
+        "Query": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "q",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "o",
+                        "Entity": "orden_compra",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "e",
+                        "Entity": "empresas",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "c",
+                        "Entity": "centro_costo",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "o"
+                                }
+                              },
+                              "Property": "sub_total"
+                            }
+                          },
+                          "Function": 0
+                        },
+                        "Name": "Sum(orden_compra.sub_total)"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "e"
+                                    }
+                                  },
+                                  "Property": "Empresa"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'1 DESARROLLADORA TOKIO, S.A. DE C.V.'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "c"
+                                    }
+                                  },
+                                  "Property": "cc"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'312'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "o"
+                                    }
+                                  },
+                                  "Property": "numero"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2408'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "q1",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "o1",
+                        "Entity": "orden_compra",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "e1",
+                        "Entity": "empresas",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "c1",
+                        "Entity": "centro_costo",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "o1"
+                            }
+                          },
+                          "Property": "Divisa"
+                        },
+                        "Name": "orden_compra.Divisa"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "e1"
+                                    }
+                                  },
+                                  "Property": "Empresa"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'1 DESARROLLADORA TOKIO, S.A. DE C.V.'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "c1"
+                                    }
+                                  },
+                                  "Property": "cc"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'312'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "o1"
+                                    }
+                                  },
+                                  "Property": "numero"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2408'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 1,
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "o1"
+                              }
+                            },
+                            "Property": "Divisa"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "q2",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "o2",
+                        "Entity": "orden_compra",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "e2",
+                        "Entity": "empresas",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "c2",
+                        "Entity": "centro_costo",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "o2"
+                                }
+                              },
+                              "Property": "iva"
+                            }
+                          },
+                          "Function": 0
+                        },
+                        "Name": "Sum(orden_compra.iva)"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "e2"
+                                    }
+                                  },
+                                  "Property": "Empresa"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'1 DESARROLLADORA TOKIO, S.A. DE C.V.'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "c2"
+                                    }
+                                  },
+                                  "Property": "cc"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'312'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "o2"
+                                    }
+                                  },
+                                  "Property": "numero"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2408'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "q3",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "o3",
+                        "Entity": "orden_compra",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "e3",
+                        "Entity": "empresas",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "c3",
+                        "Entity": "centro_costo",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "o3"
+                            }
+                          },
+                          "Property": "Divisa"
+                        },
+                        "Name": "orden_compra.Divisa"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "e3"
+                                    }
+                                  },
+                                  "Property": "Empresa"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'1 DESARROLLADORA TOKIO, S.A. DE C.V.'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "c3"
+                                    }
+                                  },
+                                  "Property": "cc"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'312'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "o3"
+                                    }
+                                  },
+                                  "Property": "numero"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2408'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 1,
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "o3"
+                              }
+                            },
+                            "Property": "Divisa"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "q4",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "o4",
+                        "Entity": "orden_compra",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "e4",
+                        "Entity": "empresas",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "c4",
+                        "Entity": "centro_costo",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "o4"
+                                }
+                              },
+                              "Property": "total"
+                            }
+                          },
+                          "Function": 0
+                        },
+                        "Name": "Sum(orden_compra.total)"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "e4"
+                                    }
+                                  },
+                                  "Property": "Empresa"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'1 DESARROLLADORA TOKIO, S.A. DE C.V.'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "c4"
+                                    }
+                                  },
+                                  "Property": "cc"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'312'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "o4"
+                                    }
+                                  },
+                                  "Property": "numero"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2408'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "q5",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "o5",
+                        "Entity": "orden_compra",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "e5",
+                        "Entity": "empresas",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "c5",
+                        "Entity": "centro_costo",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "o5"
+                            }
+                          },
+                          "Property": "Divisa"
+                        },
+                        "Name": "orden_compra.Divisa"
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "e5"
+                                    }
+                                  },
+                                  "Property": "Empresa"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'1 DESARROLLADORA TOKIO, S.A. DE C.V.'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "c5"
+                                    }
+                                  },
+                                  "Property": "cc"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'312'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "o5"
+                                    }
+                                  },
+                                  "Property": "numero"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2408'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 1,
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "o5"
+                              }
+                            },
+                            "Property": "Divisa"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "Type": 2
+            }
+          ],
+          "Select": [
+            {
+              "Min": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "q"
+                      }
+                    },
+                    "Property": "Sum(orden_compra.sub_total)"
+                  }
+                },
+                "IncludeAllTypes": 1
+              },
+              "Name": "Min(expr.Sum(orden_compra.sub_total))"
+            },
+            {
+              "Min": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "q1"
+                      }
+                    },
+                    "Property": "orden_compra.Divisa"
+                  }
+                },
+                "IncludeAllTypes": 1
+              },
+              "Name": "Min(expr.orden_compra.Divisa)"
+            },
+            {
+              "Min": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "q2"
+                      }
+                    },
+                    "Property": "Sum(orden_compra.iva)"
+                  }
+                },
+                "IncludeAllTypes": 1
+              },
+              "Name": "Min(expr.Sum(orden_compra.iva))"
+            },
+            {
+              "Min": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "q3"
+                      }
+                    },
+                    "Property": "orden_compra.Divisa"
+                  }
+                },
+                "IncludeAllTypes": 1
+              },
+              "Name": "Min(expr.orden_compra.Divisa)1"
+            },
+            {
+              "Min": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "q4"
+                      }
+                    },
+                    "Property": "Sum(orden_compra.total)"
+                  }
+                },
+                "IncludeAllTypes": 1
+              },
+              "Name": "Min(expr.Sum(orden_compra.total))"
+            },
+            {
+              "Min": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Source": "q5"
+                      }
+                    },
+                    "Property": "orden_compra.Divisa"
+                  }
+                },
+                "IncludeAllTypes": 1
+              },
+              "Name": "Min(expr.orden_compra.Divisa)2"
+            }
+          ]
+        },
+        "Binding": {
+          "Primary": {
+            "Groupings": [
+              {
+                "Projections": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              }
+            ]
+          },
+          "Version": 1
+        },
+        "ExecutionMetricsKind": 1
+      }
+    }
+  ]
+}

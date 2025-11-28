@@ -1,0 +1,99 @@
+﻿table centro_costo
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nombre_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_centro
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: tipo_centro
+
+		annotation SummarizationSetBy = Automatic
+
+	column desarrollo
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: desarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_tc
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_desarrollo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_desarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descripcion_desarrollo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: descripcion_desarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descripcion_tipo_centro
+		dataType: string
+		summarizeBy: none
+		sourceColumn: descripcion_tipo_centro
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Desarrollo' = centro_costo[cc] & " " & centro_costo[descripcion_desarrollo]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Desarrollo 2' = centro_costo[desarrollo] & " " & centro_costo[descripcion_desarrollo]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition centro_costo = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    centro_costo_Sheet = Origen{[Item="centro_costo",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(centro_costo_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"cc", type text}, {"nombre_cc", type text}, {"tipo_centro", Int64.Type}, {"desarrollo", Int64.Type}, {"source", type text}, {"id_cc", type text}, {"id_tc", type text}, {"id_desarrollo", type text}, {"descripcion_desarrollo", type text}, {"descripcion_tipo_centro", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

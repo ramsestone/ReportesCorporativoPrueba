@@ -1,0 +1,153 @@
+﻿table orden_compra_det
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column numero
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column partida
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: partida
+
+		annotation SummarizationSetBy = Automatic
+
+	column insumo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: insumo
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_entrega
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: fecha_entrega
+
+		variation Variación
+			isDefault
+			relationship: 12646e37-30c9-404b-970f-19033319764c
+			defaultHierarchy: LocalDateTable_a354713e-0d1f-441a-8ad5-db34857c9bec.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cantidad
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: cantidad
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column precio
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: precio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column importe
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: importe
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column area
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: area
+
+		annotation SummarizationSetBy = Automatic
+
+	column cuenta
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: cuenta
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_orden_compra = orden_compra_det[numero] & orden_compra_det[cc] & orden_compra_det[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_insumo = orden_compra_det[numero] & orden_compra_det[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column area_cuenta =
+			
+			VAR concatenacion = orden_compra_det[area] & "-" & orden_compra_det[cuenta]
+			RETURN
+			IF(ISBLANK(orden_compra_det[area]) && ISBLANK(orden_compra_det[cuenta]), BLANK(), concatenacion)
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrecioConDivisa = ```
+			
+			"$" & FORMAT ( orden_compra_det[precio], "#,##0.0000", "en-US" ) & " " & RELATED ( orden_compra[divisa] )
+			
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Concatenacion Cantidad' = FORMAT(orden_compra_det[cantidad], "#,##0.000000", "en-US") & " PESOS"
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc = orden_compra_det[cc] & orden_compra_det[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition orden_compra_det = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    orden_compra_det_Sheet = Origen{[Item="orden_compra_det",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(orden_compra_det_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"cc", type text}, {"numero", Int64.Type}, {"partida", Int64.Type}, {"insumo", Int64.Type}, {"fecha_entrega", type date}, {"cantidad", type number}, {"precio", type number}, {"importe", type number}, {"area", Int64.Type}, {"cuenta", Int64.Type}, {"source", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"frente"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

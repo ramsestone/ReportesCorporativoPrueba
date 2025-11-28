@@ -1,0 +1,105 @@
+{
+  "name": "d11b6c55ec377c240612",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 2171.4285714285716,
+        "y": 30.000000000000004,
+        "z": 6000,
+        "width": 365.71428571428572,
+        "height": 72.857142857142861,
+        "tabOrder": 6000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "slicer",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "estimaciones_contratistas_tot.id_convenio",
+          "active": true
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "e",
+          "Entity": "estimaciones_contratistas_tot",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "id_convenio"
+          },
+          "Name": "estimaciones_contratistas_tot.id_convenio",
+          "NativeReferenceName": "Convenio"
+        }
+      ]
+    },
+    "columnProperties": {
+      "estimaciones_contratistas_tot.id_convenio": {
+        "displayName": "Convenio"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "selfFilterEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

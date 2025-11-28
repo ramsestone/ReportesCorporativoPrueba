@@ -1,0 +1,51 @@
+﻿table presupuesto_base
+
+	column obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: obra
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_explosion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: tipo_explosion
+
+		annotation SummarizationSetBy = Automatic
+
+	column importe
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		summarizeBy: sum
+		sourceColumn: importe
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_obra
+
+		annotation SummarizationSetBy = Automatic
+
+	partition presupuesto_base = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\proforma_data.xlsx"), null, true),
+				    presupuesto_base_Sheet = Origen{[Item="presupuesto_base",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(presupuesto_base_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"obra", type text}, {"tipo_explosion", type text}, {"importe", type number}, {"source", type text}, {"id_obra", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

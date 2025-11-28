@@ -1,0 +1,49 @@
+﻿table desarrollos
+
+	column desarrollo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: desarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descripcion_desarrollo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: descripcion_desarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_desarrollo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_desarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Desarrollo' = desarrollos[desarrollo] & " " & desarrollos[descripcion_desarrollo]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition desarrollos = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    desarrollos_Sheet = Origen{[Item="desarrollos",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(desarrollos_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"desarrollo", Int64.Type}, {"descripcion_desarrollo", type text}, {"source", type text}, {"id_desarrollo", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

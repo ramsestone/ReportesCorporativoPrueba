@@ -1,0 +1,42 @@
+{
+  "name": "5214b167a0d530739b94",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 30.526315789473685,
+        "y": 371.20488724943448,
+        "z": 46000,
+        "width": 93.15789473684211,
+        "height": 31.578947368421055,
+        "tabOrder": 40000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Embarquese :",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

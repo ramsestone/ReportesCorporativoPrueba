@@ -1,0 +1,57 @@
+﻿table obras
+
+	column obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: obra
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: nombre_obra
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_obra
+		dataType: string
+		summarizeBy: none
+		sourceColumn: id_obra
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo Operacion' = ```
+			
+			VAR ObraTexto = FORMAT(obras[obra], "0")
+			VAR Sufijo = RIGHT(ObraTexto, 2)
+			RETURN 
+			    IF(Sufijo IN {"12", "13", "18", "50"}, "OBRA", "ADMINISTRATIVO")
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition obras = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\proforma_data.xlsx"), null, true),
+				    obras_Sheet = Origen{[Item="obras",Kind="Sheet"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(obras_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(#"Tipo cambiado",{{"Column1", "obra"}, {"Column2", "nombre_obra"}, {"Column3", "source"}, {"Column4", "id_obra"}}),
+				    #"Filas superiores quitadas" = Table.Skip(#"Columnas con nombre cambiado",1)
+				in
+				    #"Filas superiores quitadas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

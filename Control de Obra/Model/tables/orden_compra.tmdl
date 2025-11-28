@@ -1,0 +1,332 @@
+﻿table orden_compra
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column numero
+		dataType: string
+		summarizeBy: none
+		sourceColumn: numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: fecha
+
+		variation Variación
+			isDefault
+			relationship: 9e8edd30-1249-4fee-a5af-74cfa596fe43
+			defaultHierarchy: LocalDateTable_29d7bf1d-2321-4b9f-a67a-da81a83e95ba.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column libre_abordo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: libre_abordo
+
+		annotation SummarizationSetBy = Automatic
+
+	column comprador
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: comprador
+
+		annotation SummarizationSetBy = Automatic
+
+	column proveedor
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: proveedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_total
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: sub_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column iva
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: iva
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column comentarios
+		dataType: string
+		summarizeBy: none
+		sourceColumn: comentarios
+
+		annotation SummarizationSetBy = Automatic
+
+	column solicito
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: solicito
+
+		annotation SummarizationSetBy = Automatic
+
+	column embarquese
+		dataType: string
+		summarizeBy: none
+		sourceColumn: embarquese
+
+		annotation SummarizationSetBy = Automatic
+
+	column empleado
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: empleado
+
+		annotation SummarizationSetBy = Automatic
+
+	column uso_cfdi
+		dataType: string
+		summarizeBy: none
+		sourceColumn: uso_cfdi
+
+		annotation SummarizationSetBy = Automatic
+
+	column cfd_metodo_pago_sat
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cfd_metodo_pago_sat
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc = orden_compra[cc] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cc_orden_compra = orden_compra[cc] & "-" & orden_compra[numero]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id = orden_compra[proveedor] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado_solicito = orden_compra[solicito] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_orden_compra = orden_compra[numero] & orden_compra[cc] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column moneda
+		dataType: string
+		summarizeBy: none
+		sourceColumn: moneda
+
+		annotation SummarizationSetBy = Automatic
+
+	column almacen_autorecepcion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: almacen_autorecepcion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Divisa =
+			
+			SWITCH(
+			    VALUE(orden_compra[moneda]),
+			    1, "PESOS",
+			    2, "USD",
+			    3, "EUR")
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column bienes_servicios
+		dataType: string
+		summarizeBy: none
+		sourceColumn: bienes_servicios
+
+		annotation SummarizationSetBy = Automatic
+
+	column autorizo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: autorizo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado_autorizo = orden_compra[autorizo] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FechaFormateada = ```
+			
+			VAR FechaTexto = FORMAT ( orden_compra[fecha], "dd/mmm/yyyy" )
+			VAR Dia = LEFT ( FechaTexto, 3 )
+			VAR Mes = MID ( FechaTexto, 4, 3 )
+			VAR Anio = RIGHT ( FechaTexto, 4 )
+			RETURN
+			Dia &
+			UPPER ( LEFT ( Mes, 1 ) ) &
+			LOWER ( MID ( Mes, 2, 2 ) ) &
+			"/" & Anio
+			
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_almacen = orden_compra[almacen_autorecepcion] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column desc_autorizo = ```
+			
+			    LOOKUPVALUE(
+			        empleados_autorizo[descripcion],
+			        empleados_autorizo[id_empleado],
+			        orden_compra[id_empleado_autorizo])
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column desc_solicito =
+			
+			LOOKUPVALUE (
+			    empleados_solicito[descripcion],
+			    empleados_solicito[id_empleado],
+			    orden_compra[id_empleado_solicito]
+			)
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column puesto_solicito = RELATED(puestos_solicito[descripcion])
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column puesto_autorizo = RELATED(puestos_autorizo[descripcion])
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column vobo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: vobo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_empleado_reviso = orden_compra[vobo] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column desc_reviso = ```
+			
+			    LOOKUPVALUE(
+			        empleados_reviso[descripcion],
+			        empleados_reviso[id_empleado],
+			        orden_compra[id_empleado_reviso])
+			```
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column puesto_reviso = RELATED(puestos_reviso[descripcion])
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column direccion_almacen =
+			
+			CALCULATE(
+			    SELECTEDVALUE(almacen[direccion]),
+			    FILTER(
+			        almacen,
+			        almacen[almacen] <> "999"
+			    )
+			)
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column responsable_almacen =
+			
+			CALCULATE(
+			    SELECTEDVALUE(almacen[responsable]),
+			    FILTER(
+			        almacen,
+			        almacen[almacen] <> "999"
+			    )
+			)
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column prov_id_cc =
+			
+			orden_compra[proveedor] & orden_compra[cc] & orden_compra[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition orden_compra = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    orden_compra_Sheet = Origen{[Item="orden_compra",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(orden_compra_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"cc", type text}, {"numero", type text}, {"fecha", type date}, {"libre_abordo", Int64.Type}, {"comprador", Int64.Type}, {"proveedor", Int64.Type}, {"sub_total", type number}, {"iva", type number}, {"total", type number}, {"comentarios", type text}, {"solicito", Int64.Type}, {"embarquese", type text}, {"empleado", Int64.Type}, {"uso_cfdi", type text}, {"cfd_metodo_pago_sat", type text}, {"source", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

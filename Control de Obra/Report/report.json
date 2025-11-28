@@ -1,0 +1,42 @@
+{
+  "id": 28371829,
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [],
+  "reportId": 5563427,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "id": 18198521,
+        "items": [
+          {
+            "id": 82006151,
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "resourcePackageId": 18198521,
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "id": 18198981,
+        "items": [
+          {
+            "id": 82009644,
+            "name": "urba663816614478565.jpg",
+            "path": "urba663816614478565.jpg",
+            "resourcePackageId": 18198981,
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    }
+  ]
+}

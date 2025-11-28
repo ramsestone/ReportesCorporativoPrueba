@@ -1,0 +1,84 @@
+{
+  "name": "baad4380e03e11aeb17e",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 23.375000000000014,
+        "y": 640.125,
+        "z": 40000,
+        "width": 603,
+        "height": 105,
+        "tabOrder": 35000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "FORMA DE PAGO PPD",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Uso del CFDI: G01 (Adquisición de mercancías)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Forma de pago: 99 (Por definir)"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Método de pago: PPD (Pago en parcialidades o diferido)"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

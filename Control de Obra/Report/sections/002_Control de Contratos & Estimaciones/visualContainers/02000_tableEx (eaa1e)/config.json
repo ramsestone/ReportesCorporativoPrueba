@@ -1,0 +1,833 @@
+{
+  "name": "eaa1e8e8e0eb9b7bd8e7",
+  "layouts": [
+    {
+      "id": 0,
+      "position": {
+        "x": 1952.8367309335165,
+        "y": 716.983534062547,
+        "z": 2000,
+        "width": 2448.1214090688286,
+        "height": 1193.4002244593712,
+        "tabOrder": 2000
+      }
+    }
+  ],
+  "singleVisual": {
+    "visualType": "tableEx",
+    "projections": {
+      "Values": [
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.id_convenio)"
+        },
+        {
+          "queryRef": "CountNonNull(estimaciones_contratistas_tot.ESTIMACION_ID)"
+        },
+        {
+          "queryRef": "proveedores.numpro"
+        },
+        {
+          "queryRef": "proveedores.nombre"
+        },
+        {
+          "queryRef": "estimaciones_contratistas_tot.CC"
+        },
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.orden_compra)"
+        },
+        {
+          "queryRef": "estimaciones_contratistas_tot.Factura"
+        },
+        {
+          "queryRef": "estimaciones_contratistas_tot.Fecha_Inicio"
+        },
+        {
+          "queryRef": "estimaciones_contratistas_tot.Fecha_Fin"
+        },
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.ANTICIPOS)"
+        },
+        {
+          "queryRef": "estimaciones_contratistas_tot.sum_importe"
+        },
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.Anticipos_Det)"
+        },
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.Amort Garantia IMSS)"
+        },
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.Amort DispNom)"
+        },
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.Amort FonGar)"
+        },
+        {
+          "queryRef": "Sum(estimaciones_contratistas_tot.Amort ISR)"
+        },
+        {
+          "queryRef": "estimaciones_contratistas_tot.sum_amortizado"
+        },
+        {
+          "queryRef": "estimaciones_contratistas_tot.Total Neto"
+        }
+      ]
+    },
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "e1",
+          "Entity": "estimaciones_contratistas_tot",
+          "Type": 0
+        },
+        {
+          "Name": "p",
+          "Entity": "proveedores",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "ESTIMACION_ID"
+          },
+          "Name": "CountNonNull(estimaciones_contratistas_tot.ESTIMACION_ID)",
+          "NativeReferenceName": "Estimación"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "CC"
+          },
+          "Name": "estimaciones_contratistas_tot.CC",
+          "NativeReferenceName": "C.C."
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "Fecha_Inicio"
+          },
+          "Name": "estimaciones_contratistas_tot.Fecha_Inicio",
+          "NativeReferenceName": "Fecha Inicio"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "Fecha_Fin"
+          },
+          "Name": "estimaciones_contratistas_tot.Fecha_Fin",
+          "NativeReferenceName": "Fecha Fin"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "orden_compra"
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.orden_compra)",
+          "NativeReferenceName": "O.C."
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "sum_importe"
+          },
+          "Name": "estimaciones_contratistas_tot.sum_importe",
+          "NativeReferenceName": "Importe"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "p"
+              }
+            },
+            "Property": "numpro"
+          },
+          "Name": "proveedores.numpro",
+          "NativeReferenceName": "Número Contratista"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "p"
+              }
+            },
+            "Property": "nombre"
+          },
+          "Name": "proveedores.nombre",
+          "NativeReferenceName": "Nombre Contratista"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "id_convenio"
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.id_convenio)",
+          "NativeReferenceName": "id_convenio"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e1"
+                  }
+                },
+                "Property": "Amort Anticipos"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.Anticipos_Det)",
+          "NativeReferenceName": "Amortizado Anticipo Obra"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e1"
+                  }
+                },
+                "Property": "Amort FonGar"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.Amort FonGar)",
+          "NativeReferenceName": "Amortizado Fondo Garantía"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e1"
+                  }
+                },
+                "Property": "Amort DispNom"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.Amort DispNom)",
+          "NativeReferenceName": "Amortizado Dispersión de Nómina"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e1"
+                  }
+                },
+                "Property": "Amort ISR"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.Amort ISR)",
+          "NativeReferenceName": "Amortizado ISR"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "Total Neto"
+          },
+          "Name": "estimaciones_contratistas_tot.Total Neto",
+          "NativeReferenceName": "Total Neto"
+        },
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "sum_amortizado"
+          },
+          "Name": "estimaciones_contratistas_tot.sum_amortizado",
+          "NativeReferenceName": "Total Amortizado"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e1"
+              }
+            },
+            "Property": "Factura"
+          },
+          "Name": "estimaciones_contratistas_tot.Factura",
+          "NativeReferenceName": "Factura"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e1"
+                  }
+                },
+                "Property": "ANTICIPOS"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.ANTICIPOS)",
+          "NativeReferenceName": "Anticipo"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e1"
+                  }
+                },
+                "Property": "Amort Garantia IMSS"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(estimaciones_contratistas_tot.Amort Garantia IMSS)",
+          "NativeReferenceName": "Amortizado Garantía IMSS"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 1,
+          "Expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "e1"
+                }
+              },
+              "Property": "ESTIMACION_ID"
+            }
+          }
+        }
+      ]
+    },
+    "columnProperties": {
+      "estimacion_obra.FECHA_INICIO": {
+        "formatString": null
+      },
+      "estimacion_obra.FECHA_FIN": {
+        "formatString": null
+      },
+      "estimacion_obra.ESTIMACION_ID": {
+        "displayName": "Estimacion"
+      },
+      "CountNonNull(estimaciones_contratistas_tot.ESTIMACION_ID)": {
+        "displayName": "Estimación"
+      },
+      "Sum(estimaciones_contratistas_tot.orden_compra)": {
+        "displayName": "O.C."
+      },
+      "estimaciones_contratistas_tot.CC": {
+        "displayName": "C.C."
+      },
+      "estimaciones_contratistas_tot.sum_importe": {
+        "displayName": "Importe"
+      },
+      "proveedores.numpro": {
+        "displayName": "Número Contratista"
+      },
+      "proveedores.nombre": {
+        "displayName": "Nombre Contratista"
+      },
+      "Sum(estimaciones_contratistas_tot.id_convenio)": {
+        "displayName": "Convenio"
+      },
+      "estimaciones_contratistas_tot.Fecha_Inicio": {
+        "displayName": "Fecha Inicio"
+      },
+      "estimaciones_contratistas_tot.Fecha_Fin": {
+        "displayName": "Fecha Fin"
+      },
+      "Sum(estimaciones_contratistas_tot.Anticipos_Det)": {
+        "displayName": "Amortizado Anticipo Obra"
+      },
+      "Sum(estimaciones_contratistas_tot.Amort FonGar)": {
+        "displayName": "Amortizado Fondo Garantía"
+      },
+      "Sum(estimaciones_contratistas_tot.Amort DispNom)": {
+        "displayName": "Amortizado Dispersión de Nómina"
+      },
+      "Sum(estimaciones_contratistas_tot.Amort ISR)": {
+        "displayName": "Amortizado ISR"
+      },
+      "estimaciones_contratistas_tot.sum_amortizado": {
+        "displayName": "Total Amortizado"
+      },
+      "Sum(estimaciones_contratistas_tot.ANTICIPOS)": {
+        "displayName": "Anticipo"
+      },
+      "Sum(estimaciones_contratistas_tot.Amort Garantia IMSS)": {
+        "displayName": "Amortizado Garantía IMSS"
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#60A61E'"
+                    }
+                  }
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.33333333333333D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.CC"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CountNonNull(estimaciones_contratistas_tot.ESTIMACION_ID)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.70212711683803D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.orden_compra)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94.82050841618786D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.Fecha_Inicio"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.82051383641942D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.Fecha_Fin"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "138.83878231176558D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.sum_importe"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "93.60796931101844D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.numpro"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "418.09425128187473D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.nombre"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.id_convenio)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "170.43901925159813D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.Anticipos_Det)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "146.43957124266177D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.Amort FonGar)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "147.39131470453455D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.Amort DispNom)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "118.6073211241378D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.Amort ISR)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "166.13476582164748D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.Total Neto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "133.59158283376172D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.sum_amortizado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.Factura"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "142.82799548375206D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.ANTICIPOS)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "189D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.Amort Garantia IMSS)"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estimaciones_contratistas_tot.id_convenio)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CountNonNull(estimaciones_contratistas_tot.ESTIMACION_ID)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "proveedores.numpro"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estimaciones_contratistas_tot.Factura"
+          }
+        }
+      ]
+    },
+    "vcObjects": {
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,57 @@
+﻿table 'desarrollos EK10'
+
+	column IdDesarrollo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IdDesarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescripcionDesarrollo
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DescripcionDesarrollo
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdCompania
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: IdCompania
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre Desarrollo Ek9' =
+			
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "ARMONIK RIO CONSULADO", "RIO CONSULADO",
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "FLORESTA RESIDENCIAL 1", "FLORESTA 1",
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "FLORESTA RESIDENCIAL 2", "FLORESTA 2",
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "FLORESTA RESIDENCIAL 3", "FLORESTA 3",
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "LIV REFORMA RESIDENCES", "LIV REFORMA",
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "RESIDENCIAL EDUARDO MOLINA", "EDUARDO MOINA 2-3", -- Preguntar si este dato es correcto
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "RESIDENCIAL EDUARDO MOLINA 1", "EDUARDO MOLINA",
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "RESIDENCIAL EDUARDO MOLINA 4", "EDUARDO MOLINA 4",
+			IF('desarrollos EK10'[DescripcionDesarrollo] = "VALLEJO", "RESIDENCIAL",
+			'desarrollos EK10'[DescripcionDesarrollo]
+			)))))))))
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'desarrollos EK10' = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\comercializacion_data.xlsx"), null, true),
+				    desarrollos_Sheet = Origen{[Item="desarrollos",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(desarrollos_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"IdDesarrollo", Int64.Type}, {"DescripcionDesarrollo", type text}, {"IdCompania", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

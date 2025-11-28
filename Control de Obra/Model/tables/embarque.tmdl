@@ -1,0 +1,50 @@
+﻿table embarque
+
+	column cc
+		dataType: string
+		summarizeBy: none
+		sourceColumn: cc
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_embarque
+		dataType: string
+		summarizeBy: none
+		sourceColumn: num_embarque
+
+		annotation SummarizationSetBy = Automatic
+
+	column descripcion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: descripcion
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cc = embarque[cc] & embarque[source]
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition embarque = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\REPORTES_CORPORATIVO_PBI\outputs\control_obra_data.xlsx"), null, true),
+				    embarque_Sheet = Origen{[Item="embarque",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(embarque_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"cc", type text}, {"num_embarque", type text}, {"descripcion", type text}, {"source", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
